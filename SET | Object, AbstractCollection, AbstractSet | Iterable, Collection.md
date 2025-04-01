@@ -396,7 +396,7 @@ TreeSet: The internal structure (Red-Black Tree) locks the entire tree or parts 
 TreeSet is ideal when you need a sorted set and don't need thread-safety or plan to manage concurrency externally.
 ConcurrentSkipListSet is the preferred choice for multi-threaded applications that need a sorted set and require thread-safe access without the need for external synchronization.
 
-#### Comparator(a seperate interface).
+#### Comparator (a seperate interface).
 
 Comparator is a seperate Interface and can be used to write a tottaly custom comparator that doesn't depend on TreeSet and ConcurentSkipListSet
 
