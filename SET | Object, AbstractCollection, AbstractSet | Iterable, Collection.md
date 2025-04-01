@@ -15,10 +15,10 @@ Also default Object.hashCode() Is Not Always Unique. It is based on an internal 
 Objects are stored in Heap memory, which is shared across threads and used for dynamic memory allocation.
 References (pointers to objects) are stored in Stack memory, which is specific to a thread and contains method call frames and local variables.
 
-- equals(): 
-#### Equals for primitives
+#### equals(): 
+- Equals for primitives
 equals() does not work for primitives because primitives are not objects. Instead, Java provides relational operators (==, >, <, etc.) for primitive comparisons. Hence, why you can't store primitives in Java collections.
-#### Equals for objects
+- Equals for objects
 equals() compares values (content) of objects, whereas == compares memory references. If a class does not override equals(), it inherits Object.equals(), which performs a reference check (==).
 ```java
 class A {}
@@ -27,7 +27,7 @@ A obj2 = new A();
 System.out.println(obj1.equals(obj2)); // false (because different memory locations)
 System.out.println(obj1 == obj2);      // false (different objects)
 ```
-#### Equals for Strings
+- Equals for Strings
 Java overrides equals() in String to compare contents, not memory addresses.
 ```java
 String s1 = new String("Hello");
@@ -42,7 +42,7 @@ String s4 = "Hello";
 System.out.println(s3 == s4);      // true (same reference due to String Pool)
 System.out.println(s3.equals(s4)); // true (same content)
 ```
-#### Equals for wrapper classes
+- Equals for wrapper classes
 Wrapper classes (Integer, Double, etc.) override equals() to compare values instead of references.
 ```java
 Integer x = 1000;
