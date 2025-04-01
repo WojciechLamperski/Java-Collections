@@ -1,14 +1,14 @@
-## Set, 
-### and all the Classes and Interfaces needed to understand Collection Hierarchy
+## Set, and all the Classes and Interfaces needed to understand Collection Hierarchy
 
-All collections are objects because their implementations are classes, and all classes implicitly inherit from Object. While collection interfaces (List, Set, etc.) do not inherit Object methods, any concrete implementation we use (ArrayList, HashSet, etc.) does. This ensures that methods like .equals() and .hashCode() are always available in actual collection objects, since they are intherited from Object.
+###Object
+All collections are objects because their implementations are classes, and all classes implicitly inherit from Object (which is a class). While collection interfaces (List, Set, etc.) do not inherit Object methods, any concrete implementation we use (ArrayList, HashSet, etc.) does. This ensures that methods like .equals() and .hashCode() are always available in actual collection objects, since they are intherited from Object.
 
 - hashCode(): returns an integer that represents the object's hash value, which is used for efficient lookup in hash-based collections like HashSet and HashMap. By default, Object.hashCode() in Java returns a unique integer derived from the object's memory address, but classes often override hashCode() to generate a value based on relevant fields (e.g., a string’s characters or a number’s value) to ensure logical equality. This allows different instances with the same data to be treated as duplicates in collections.
 
 Not every object has a unique hashCode(). While Java's default implementation (Object.hashCode()) may return a unique value based on memory address, custom hashCode() implementations can produce the same hash for different objects. This is known as a hash collision.
 If hashCode() is based on limited fields (e.g., only a name in a Person class), different objects with the same value will have the same hash.
 
-Pigeonhole Principle (Finite Hash Space): hashCode() returns an int (32-bit), meaning there are only 2³² possible hash values. Since Java programs can create more than 2³² objects, collisions are inevitable.
+**Pigeonhole Principle** (Finite Hash Space): hashCode() returns an int (32-bit), meaning there are only 2³² possible hash values. Since Java programs can create more than 2³² objects, collisions are inevitable.
 
 Also default Object.hashCode() Is Not Always Unique. It is based on an internal mechanism (often the memory address but not guaranteed), and in rare cases, objects may have the same hash.
 
@@ -16,42 +16,46 @@ Objects are stored in Heap memory, which is shared across threads and used for d
 References (pointers to objects) are stored in Stack memory, which is specific to a thread and contains method call frames and local variables.
 
 - equals(): 
-## Equals for primitives
+#### Equals for primitives
 equals() does not work for primitives because primitives are not objects. Instead, Java provides relational operators (==, >, <, etc.) for primitive comparisons. Hence, why you can't store primitives in Java collections.
-
-## Equals for objects
-equals() compares values (content) of objects, whereas == compares memory references.
-If a class does not override equals(), it inherits Object.equals(), which performs a reference check (==).
+#### Equals for objects
+equals() compares values (content) of objects, whereas == compares memory references. If a class does not override equals(), it inherits Object.equals(), which performs a reference check (==).
+```java
 class A {}
 A obj1 = new A();
 A obj2 = new A();
 System.out.println(obj1.equals(obj2)); // false (because different memory locations)
 System.out.println(obj1 == obj2);      // false (different objects)
-
-## Equals for Strings
+```
+#### Equals for Strings
 Java overrides equals() in String to compare contents, not memory addresses.
+```java
 String s1 = new String("Hello");
 String s2 = new String("Hello");
 System.out.println(s1.equals(s2)); // true (same content)
 System.out.println(s1 == s2);      // false (different memory locations)
-
+```
+```java
 However, String literals are stored in the String Pool, so when assigned directly:
 String s3 = "Hello";
 String s4 = "Hello";
 System.out.println(s3 == s4);      // true (same reference due to String Pool)
 System.out.println(s3.equals(s4)); // true (same content)
-
-## Equals for wrapper classes
+```
+#### Equals for wrapper classes
 Wrapper classes (Integer, Double, etc.) override equals() to compare values instead of references.
+```java
 Integer x = 1000;
 Integer y = 1000;
 System.out.println(x.equals(y)); // true (compares value)
 System.out.println(x == y);      // false (different objects)
-
+```
 📝 Note: Small integers (-128 to 127) are cached, so == may return true for values in that range:
+```java
 Integer a = 127;
 Integer b = 127;
 System.out.println(a == b); // true (cached values)
+```
 ---------------------------------------------------------
 
 Collections are split between interfaces and classes, but only classes can be used in our code, but we can define a type to be interface for flexibility
