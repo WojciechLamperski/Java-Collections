@@ -60,12 +60,16 @@ System.out.println(a == b); // true (cached values)
 ---------------------------------------------------------
 
 Collections are split between interfaces and classes, but only classes can be used in our code, but we can define a type to be interface for flexibility
+```java
 List<String> myList;
 myList = new ArrayList<>();
 myList = new LinkedList<>();
+```
 
-I'm not sure it's the best idea though, but technically we can do that. What we can't do is this:
+I'm not sure if the above is the cleanest / recommended approach, but technically we can do that. What we can't do is this:
+```java
 List<String> myList = new List<>(); // ❌ Compilation error
+```
 --------------------------------------------------------- 
 
 All Collections implement Iterable. 
