@@ -72,10 +72,9 @@ List<String> myList = new List<>(); // ❌ Compilation error
 ```
 --------------------------------------------------------- 
 
-All Collections implement Iterable. 
-Below we'll explore Iterable and Collections Interfaces. Starting with Iterable:
+##All Collections implement Iterable.Below we'll explore Iterable and Collections Interfaces:
 
-## Iterable
+### Iterable
 Iterable<E> (The Foundation)
 Interface that allows iteration over elements.
 Implemented by Collection<E> (which means all collections are iterable).
@@ -120,7 +119,7 @@ Similarly to Iterator each collection provides a custom implementation of Splite
 Splitarator is used for parallel streams, where the workload is divided.
 
 
-## Collection interface:
+### Collection interface:
 The Collection interface extends Iterable, meaning it inherits the ability to use forEach(), iterator(), and spliterator(). However, Collection adds additional functionality that makes it more powerful and useful for working with groups of objects.
 
 + Bulk Operations: Unlike Iterable, Collection allows modifying groups of elements at once:
