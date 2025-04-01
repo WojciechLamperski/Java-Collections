@@ -306,7 +306,7 @@ AbstractCollection
 
 ## Implementations of Set, and/or NavigableSet and extensions of AbstractSet
 
-+ HashSet<E>
+### HashSet<E>
 - Implements Set<E>, backed by a HashMap (keys are the elements, values are dummy objects).
 - Unordered, allows null.
 - add(), remove(), contains() work in O(1) average time.
@@ -318,15 +318,16 @@ AbstractCollection
 * Fast operations (O(1)) due to hashing. ✅
 * No ordering is preserved. ❌
 * HashSet internally does something like this:
-
+```java
 private transient HashMap<E, Object> map;
 private static final Object PRESENT = new Object(); // Dummy value
 
 public boolean add(E e) {
     return map.put(e, PRESENT) == null;
 }
+```
 
-+ LinkedHashSet<E>
+### LinkedHashSet<E>
 - Extends HashSet<E>, maintains insertion order. It doesn't sort elements.
 - Uses a LinkedHashMap internally (doubly linked list to preserve order).
 - Slightly slower than HashSet due to ordering overhead.
@@ -334,7 +335,7 @@ public boolean add(E e) {
 * Preserves insertion order (because LinkedHashMap does). ✅
 * Still O(1) for most operations, but with slightly more memory overhead due to the linked list. ✅
 * Internally LinkedHashSet's usage of LinkedHashMap looks like that:
-
+```java
 public class LinkedHashSet<E> extends HashSet<E> {
     private transient LinkedHashMap<E, Object> map; // Uses LinkedHashMap instead
 
@@ -342,46 +343,9 @@ public class LinkedHashSet<E> extends HashSet<E> {
         return map.put(e, PRESENT) == null; // Uses LinkedHashMap to maintain order
     }
 }
-----------------------------------
+```
 
-## SortedSet
-
-Sorted Set implements Set.
-SortedSet guarantees elements are sorted based on natural ordering or a comparator.
-Insertion order ≠ Sorted order
-Consider the below comparison of Set implementation (that also has ordering) and SortedSet
-
-Set<Integer> linkedHashSet = new LinkedHashSet<>();
-linkedHashSet.add(3);
-linkedHashSet.add(1);
-linkedHashSet.add(2);
-System.out.println(linkedHashSet); 
-// ✅ Output: [3, 1, 2] (Maintains insertion order, NOT sorted)
-
-SortedSet<Integer> sortedSet = new TreeSet<>();
-sortedSet.add(3);
-sortedSet.add(1);
-sortedSet.add(2);
-System.out.println(sortedSet); 
-// ✅ Output: [1, 2, 3] (Sorted order)
-
-- No duplicates allowed ❌
-- Sorted order (natural or custom)
-- Sorted (by Comparable or Comparator) ✅
-
-Custom methods:
-- first(), 
-- last(), 
-- headSet(), 
-- tailSet(), 
-- subSet()
-
-Implementations:
-Uses a Red-Black Tree
-
-## SortedSet Implementations
-
-+ TreeSet<E>
+### TreeSet<E>
 - Implements SortedSet<E>, backed by a Red-Black Tree.
 - Maintains sorted order (natural/comparator).
 - add(), remove(), contains() work in O(log n) time.
@@ -400,7 +364,7 @@ Uses a Red-Black Tree
  * Automatically sorts elements while keeping performance efficient. ✅ 
  * Similarly to other Set implementations TreeSet uses a Map implementation. Specifically **TreeSet in Java relies on a TreeMap**, which internally implements a Red-Black Tree. This ensures that elements are sorted, balanced, and accessible in O(log n) time.
  * The main thing that differentiates TreeSet from TreeMap is that TreeSet prevents duplicate elements, while TreeMap prevents duplicate keys.
- 
+ ```java
  public class TreeSet<E> extends AbstractSet<E> implements NavigableSet<E> {
     private transient NavigableMap<E, Object> map;  // Uses a TreeMap
     private static final Object PRESENT = new Object(); // Dummy value
@@ -413,41 +377,9 @@ Uses a Red-Black Tree
         return map.put(e, PRESENT) == null; // Inserts key into TreeMap
     }
 }
+```
 
-Now you may be wondering what is an AbstractSet & NavigableSet
-
-AbstractSet is something that actually most Set collections use, AbstractSet is an implementation of Set, and extension of AbstractCollection, which is an implementation of Collection.
-HashSet, LinkedHashSet, and TreeSet all extend AbstractSet. But there are some collections that don't, such as:
-- EnumSet which implements Set directly for better performance with enums.
-- ConcurrentSkipListSet which implements NavigableSet directly, optimized for concurrency.
-- CopyOnWriteArraySet which implements Set directly for thread safety.
-
-What is the difference between extending AbstractSet and implementing Set directly, such as written that EnumSet does for performance, and CopyOnWriteArraySet does for thread safety? 
-
-Extending AbstractSet vs. Implementing Set directly comes down to trade-offs in performance, memory usage, and special behavior. Implementing Set directly is often chosen for performance-critical or concurrent collections.
-There are 2 classes that implement Set directly, instead of using AbstractSet:
-- EnumSet:
-   + Uses bitwise operations instead of a general-purpose Set implementation.
-   + Extending AbstractSet would add unnecessary method overhead.
-   + Implements Set directly to be as fast as possible for enums.
-- CopyOnWriteArraySet:
-   + Uses a copy-on-write strategy (modifies a new copy of the array for each write).
-   + Implements Set directly so it can be backed by CopyOnWriteArrayList without unnecessary methods from AbstractSet.
-   + Extending AbstractSet would not help, as AbstractSet is not designed for concurrent modifications.
-   
-What is NavigableSet?
-
-NavigableSet<E> is an interface that extends SortedSet<E> (which isn't used directly by a single class).
-It adds extra navigation methods that allow you to find elements before/after a given value.
-
-Key Methods in NavigableSet (used by TreeSet & ConcurrentSkipListSet)
-
-- lower(E e) - Returns greatest element < e
-- floor(E e) - Returns greatest element ≤ e
-- ceiling(E e) - Returns smallest element ≥ e
-- higher(E e) - Returns smallest element > e
-- descendingSet() - Returns a reverse-order view of the set
-
+### ConcurrentSkipListSet
 Another method that uses NavigableSet is ConcurrentSkipListSet. Instead of using Red-Black Tree it uses a Skip List, a probabilistic data structure designed for fast search, insertion, and deletion. Like TreeSet, elements in ConcurrentSkipListSet are stored in sorted order, using natural ordering or a Comparator. Another thing to consider is Time Complexity: Operations like add(), remove(), and contains() typically have O(log n) time complexity, but due to the probabilistic nature of Skip Lists, the actual performance can vary. However, it's typically considered to be more efficient for concurrent access.
 
 TreeSet is not thread-safe. If multiple threads try to modify a TreeSet concurrently, you'll need to manually synchronize access using synchronized blocks or other concurrency mechanisms (e.g., ReentrantLock).
@@ -464,10 +396,12 @@ TreeSet: The internal structure (Red-Black Tree) locks the entire tree or parts 
 TreeSet is ideal when you need a sorted set and don't need thread-safety or plan to manage concurrency externally.
 ConcurrentSkipListSet is the preferred choice for multi-threaded applications that need a sorted set and require thread-safe access without the need for external synchronization.
 
-Btw Comparator is a seperate Interface and can be used to write a tottaly custom comparator that doesn't depend on TreeSet and ConcurentSkipListSet.
+#### Comparator(a seperate interface).
+
+Comparator is a seperate Interface and can be used to write a tottaly custom comparator that doesn't depend on TreeSet and ConcurentSkipListSet
 
 Example of using custom comparator in TreeSet:
-
+```java
 public class TreeSetCustomComparatorExample {
     public static void main(String[] args) {
         // Create a TreeSet with a custom Comparator
@@ -481,9 +415,9 @@ public class TreeSetCustomComparatorExample {
         System.out.println(people);
     }
 }
-
+```
 Example of using custom comparator in ConcurentSkipListSet:
-
+```java
 import java.util.concurrent.ConcurrentSkipListSet;
 
 public class SkipListSetCustomComparatorExample {
@@ -499,3 +433,4 @@ public class SkipListSetCustomComparatorExample {
         System.out.println(people);
     }
 }
+```
