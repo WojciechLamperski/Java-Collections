@@ -265,6 +265,41 @@ Key Methods in NavigableSet (used by TreeSet & ConcurrentSkipListSet)
 - descendingSet() - Returns a reverse-order view of the set
 
 ---------------------------------------------------------
+## Set hierarchy in detail:
+
+Iterable<E>  
+    ▲  
+Collection<E>  
+    ▲ 
+Set<E>  
+    ▲  
+    ├── HashSet<E>   (extends AbstractSet, uses HashMap internally)  
+    │  
+    ├── LinkedHashSet<E>   (extends HashSet, uses LinkedHashMap)  
+    │  
+    ├── TreeSet<E>   (implements NavigableSet, extends AbstractSet, uses Red-Black Tree)  
+    │  
+    ├── EnumSet<E>   (implements Set directly, uses bitwise operations)  
+    │  
+    ├── CopyOnWriteArraySet<E>   (implements Set directly, uses CopyOnWriteArrayList)  
+    │  
+    ├── ConcurrentSkipListSet<E>   (implements NavigableSet (which implements SortedSet<E>) directly, uses Skip List)  
+
+Remember that AbstractSet is an implementation of Set, and an extension of AbstractCollection which is an implementation of Collection
+
+---------------------------------------------------------------
+Set<E>  
+    ▲ 
+AbstractSet<E> (extends AbstractCollection)
+
+Remember that AbstractSet is the class responsible for providing default implementations of hashCode() and equals() for Set collections.
+
+----------------------------------------------------------------
+Collection<E>  
+    ▲ 
+AbstractCollection
+
+----------------------------------------------------------------
 
 ## Implementations of Set, and/or NavigableSet and extensions of AbstractSet
 
@@ -461,45 +496,3 @@ public class SkipListSetCustomComparatorExample {
         System.out.println(people);
     }
 }
----------------------------------------------------------------
-
-Iterable<E>  
-    ▲  
-Collection<E>  
-    ▲ 
-Set<E>  
-    ▲  
-    ├── HashSet<E>   (extends AbstractSet, uses HashMap internally)  
-    │  
-    ├── LinkedHashSet<E>   (extends HashSet, uses LinkedHashMap)  
-    │  
-    ├── TreeSet<E>   (implements NavigableSet, extends AbstractSet, uses Red-Black Tree)  
-    │  
-    ├── EnumSet<E>   (implements Set directly, uses bitwise operations)  
-    │  
-    ├── CopyOnWriteArraySet<E>   (implements Set directly, uses CopyOnWriteArrayList)  
-    │  
-    ├── ConcurrentSkipListSet<E>   (implements NavigableSet (which implements SortedSet<E>) directly, uses Skip List)  
-
-Remember that AbstractSet is an implementation of Set, and an extension of AbstractCollection which is an implementation of Collection
----------------------------------------------------------------
-Set<E>  
-    ▲ 
-AbstractSet<E> (extends AbstractCollection)
-
-Remember that AbstractSet is the class responsible for providing default implementations of hashCode() and equals() for Set collections.
-----------------------------------------------------------------
-Collection<E>  
-    ▲ 
-AbstractCollection
-
-Remember that AbstractCollection implements some methods that Collection interface defines, such as:
-- isEmpty() - returns size() == 0, 
-- contains(Object o) - uses iterator() to check for o, 
-- toArray(), 
-- toString(),
-- remove(Object o) - uses iterator().remove(), 
-- clear() - calls iterator.remove() on all elements, 
-- addAll(Collection<? extends E> c) - calls add(e) for each element.
-A lot of these methods as you can see are dependent on **size()**, **add(e)** & **iterator()** methods which are defined by individual collection subclasses later down the extension chain.
-----------------------------------------------------------------
