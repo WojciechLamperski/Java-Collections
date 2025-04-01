@@ -265,8 +265,9 @@ Key Methods in NavigableSet (used by TreeSet & ConcurrentSkipListSet)
 - descendingSet() - Returns a reverse-order view of the set
 
 ---------------------------------------------------------
-## Set hierarchy in detail:
 
+## Set hierarchy in detail:
+<br>
 Iterable<E>  
     ▲  
 Collection<E>  
