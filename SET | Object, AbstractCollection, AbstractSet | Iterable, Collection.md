@@ -3,7 +3,8 @@
 ### Object
 All collections are objects because their implementations are classes, and all classes implicitly inherit from Object (which is a class). While collection interfaces (List, Set, etc.) do not inherit Object methods, any concrete implementation we use (ArrayList, HashSet, etc.) does. This ensures that methods like .equals() and .hashCode() are always available in actual collection objects, since they are intherited from Object.
 
-- hashCode(): returns an integer that represents the object's hash value, which is used for efficient lookup in hash-based collections like HashSet and HashMap. By default, Object.hashCode() in Java returns a unique integer derived from the object's memory address, but classes often override hashCode() to generate a value based on relevant fields (e.g., a string’s characters or a number’s value) to ensure logical equality. This allows different instances with the same data to be treated as duplicates in collections.
+#### hashCode(): 
+Returns an integer that represents the object's hash value, which is used for efficient lookup in hash-based collections like HashSet and HashMap. By default, Object.hashCode() in Java returns a unique integer derived from the object's memory address, but classes often override hashCode() to generate a value based on relevant fields (e.g., a string’s characters or a number’s value) to ensure logical equality. This allows different instances with the same data to be treated as duplicates in collections.
 
 Not every object has a unique hashCode(). While Java's default implementation (Object.hashCode()) may return a unique value based on memory address, custom hashCode() implementations can produce the same hash for different objects. This is known as a hash collision.
 If hashCode() is based on limited fields (e.g., only a name in a Person class), different objects with the same value will have the same hash.
