@@ -72,7 +72,7 @@ List<String> myList = new List<>(); // ❌ Compilation error
 ```
 --------------------------------------------------------- 
 
-## All Collections implement Iterable.Below we'll explore Iterable and Collections Interfaces:
+## All Collections implement Iterable. Below we'll explore Iterable and Collections Interfaces:
 
 ### Iterable
 Iterable<E> (The Foundation)
