@@ -119,7 +119,7 @@ Similarly to Iterator each collection provides a custom implementation of Splite
 Splitarator is used for parallel streams, where the workload is divided.
 
 
-### Collection interface:
+### Collection:
 The Collection interface extends Iterable, meaning it inherits the ability to use forEach(), iterator(), and spliterator(). However, Collection adds additional functionality that makes it more powerful and useful for working with groups of objects.
 
 + Bulk Operations: Unlike Iterable, Collection allows modifying groups of elements at once:
