@@ -287,6 +287,7 @@ Set<E>
     ├── ConcurrentSkipListSet<E>   (implements NavigableSet (which implements SortedSet<E>) directly, uses Skip List)  
 ```
 Remember that AbstractSet is an implementation of Set, and an extension of AbstractCollection which is an implementation of Collection
+<br />
 
 ```mathematica
 Set<E>  
@@ -294,6 +295,7 @@ Set<E>
 AbstractSet<E> (extends AbstractCollection)
 ```
 Remember that AbstractSet is the class responsible for providing default implementations of hashCode() and equals() for Set collections.
+<br />
 
 ```mathematica
 Collection<E>  
