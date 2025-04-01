@@ -143,8 +143,19 @@ The Collection interface extends Iterable, meaning it inherits the ability to us
 + Stream Support: Although Iterable allows forEach(), Collection introduces streams, which enable functional-style programming.
 - stream(): Returns a sequential stream
 - parallelStream(): Returns a parallel stream
+
+#### AbstractCollection
+
+AbstractCollection is a class that implements some methods that Collection interface defines, such as:
+- isEmpty() - returns size() == 0, 
+- contains(Object o) - uses iterator() to check for o, 
+- toArray(), 
+- toString(),
+- remove(Object o) - uses iterator().remove(), 
+- clear() - calls iterator.remove() on all elements, 
+- addAll(Collection<? extends E> c) - calls add(e) for each element.
+A lot of these methods as you can see are dependent on **size()**, **add(e)** & **iterator()** methods which are defined by individual collection subclasses later down the extension chain.
 ---------------------------------------------------------
-TODO ADD TIME COMPLEXITY TO THESE CLASSES
 
 ## Set
 
@@ -185,11 +196,77 @@ Java iterates through each element and calls equals() on them. If the elements d
 * No Duplicates: add(E e) ensures only unique elements. ✅
 * Modified equals() and hashCode(): Equality is based on elements, not order. ✅
 
+### AbstractSet
 
-?? Implementations: **Uses HashMap internally (HashSet), Linked List (LinkedHashSet)** ??
+AbstractSet is a class that actually most Set collections use. AbstractSet is an implementation of Set, and extension of AbstractCollection, which is an implementation of Collection.
+HashSet, LinkedHashSet, and TreeSet all extend AbstractSet. But there are some collections that don't, such as:
+- EnumSet which implements Set directly for better performance with enums.
+- ConcurrentSkipListSet which implements NavigableSet directly, optimized for concurrency.
+- CopyOnWriteArraySet which implements Set directly for thread safety.
+- 
+What is the difference between extending AbstractSet and implementing Set directly,? 
 
+Extending AbstractSet vs. Implementing Set directly comes down to trade-offs in performance, memory usage, and special behavior. Implementing Set directly is often chosen for performance-critical or concurrent collections.
+There are 2 classes that implement Set directly (which we will discuss later), instead of using AbstractSet:
+- EnumSet:
+   + Uses bitwise operations instead of a general-purpose Set implementation.
+   + Extending AbstractSet would add unnecessary method overhead.
+   + Implements Set directly to be as fast as possible for enums.
+- CopyOnWriteArraySet:
+   + Uses a copy-on-write strategy (modifies a new copy of the array for each write).
+   + Implements Set directly so it can be backed by CopyOnWriteArrayList without unnecessary methods from AbstractSet.
+   + Extending AbstractSet would not help, as AbstractSet is not designed for concurrent modifications.
+ 
+### SortedSet & NavigableSet 
 
-## Set Implementations
+Sorted Set implements Set.
+SortedSet guarantees elements are sorted based on natural ordering or a comparator.
+Insertion order ≠ Sorted order
+Consider the below comparison of Set implementation (that also has ordering) and SortedSet
+
+Set<Integer> linkedHashSet = new LinkedHashSet<>();
+linkedHashSet.add(3);
+linkedHashSet.add(1);
+linkedHashSet.add(2);
+System.out.println(linkedHashSet); 
+// ✅ Output: [3, 1, 2] (Maintains insertion order, NOT sorted)
+
+SortedSet<Integer> sortedSet = new TreeSet<>();
+sortedSet.add(3);
+sortedSet.add(1);
+sortedSet.add(2);
+System.out.println(sortedSet); 
+// ✅ Output: [1, 2, 3] (Sorted order)
+
+- No duplicates allowed ❌
+- Sorted order (natural or custom)
+- Sorted (by Comparable or Comparator) ✅
+
+Custom methods:
+- first(), 
+- last(), 
+- headSet(), 
+- tailSet(), 
+- subSet()
+
+### NavigableSet
+
+What is NavigableSet?
+
+NavigableSet<E> is an interface that extends SortedSet<E> (which isn't used directly by a single class).
+It adds extra navigation methods that allow you to find elements before/after a given value.
+
+Key Methods in NavigableSet (used by TreeSet & ConcurrentSkipListSet)
+
+- lower(E e) - Returns greatest element < e
+- floor(E e) - Returns greatest element ≤ e
+- ceiling(E e) - Returns smallest element ≥ e
+- higher(E e) - Returns smallest element > e
+- descendingSet() - Returns a reverse-order view of the set
+
+---------------------------------------------------------
+
+## Implementations of Set, and/or NavigableSet and extensions of AbstractSet
 
 + HashSet<E>
 - Implements Set<E>, backed by a HashMap (keys are the elements, values are dummy objects).
