@@ -267,7 +267,7 @@ Key Methods in NavigableSet (used by TreeSet & ConcurrentSkipListSet)
 ---------------------------------------------------------
 
 ## Set hierarchy in detail:
-<br>
+
 Iterable<E>  
     ▲  
 Collection<E>  
