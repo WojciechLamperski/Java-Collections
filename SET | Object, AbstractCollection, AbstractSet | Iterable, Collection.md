@@ -307,6 +307,8 @@ AbstractCollection
 ## Implementations of Set, and/or NavigableSet and extensions of AbstractSet
 
 ### HashSet<E>
+#### ⏰ Performance & Time complexity: Provides O(1) average-time complexity for add, remove, and contains operations. Iteration is O(n) and typically slightly faster than LinkedHashSet (no linked-list overhead), but slower than TreeSet for ordered traversals.
+
 - Implements Set<E>, backed by a HashMap (keys are the elements, values are dummy objects).
 - Unordered, allows null.
 - add(), remove(), contains() work in O(1) average time.
@@ -328,6 +330,8 @@ public boolean add(E e) {
 ```
 
 ### LinkedHashSet<E>
+#### ⏰ Performance & Time complexity: Offers O(1) time complexity for add, remove, and contains (like HashSet), but maintains insertion-order iteration with O(1) per-element overhead. Iteration (forEach, iterator) is O(n) but faster than HashSet due to linked-list traversal optimization.
+
 - Extends HashSet<E>, maintains insertion order. It doesn't sort elements.
 - Uses a LinkedHashMap internally (doubly linked list to preserve order).
 - Slightly slower than HashSet due to ordering overhead.
@@ -346,6 +350,9 @@ public class LinkedHashSet<E> extends HashSet<E> {
 ```
 
 ### TreeSet<E>
+#### ⏰ Performance & Time complexity: Almost all of it's methods have O(log n) time complexity (besides first() and last() methods) It's less performance efficient than HashMap.
+ 
+
 - Implements SortedSet<E>, backed by a Red-Black Tree.
 - Maintains sorted order (natural/comparator).
 - add(), remove(), contains() work in O(log n) time.
@@ -379,6 +386,26 @@ public class LinkedHashSet<E> extends HashSet<E> {
 }
 ```
 
+TreeSet has operations like **floor()** - Returns the greatest element ≤ e (or null if none exists) - and **ceiling()** - Returns the smallest element ≥ e (or null if none exists) which other classes don't have. Take a look:
+
+Other methods include:
+- E first() → O(1) (smallest element).
+- E last() → O(1) (largest element).
+- E floor(E e) → Greatest element ≤ e (O(log n)).
+- E ceiling(E e) → Smallest element ≥ e (O(log n)).
+- E lower(E e) → Greatest element < e (O(log n)).
+- E higher(E e) → Smallest element > e (O(log n)).
+
+Subset/Range Views (O(log n + k))
+- SortedSet<E> headSet(E toElement) → Elements < toElement.
+- SortedSet<E> tailSet(E fromElement) → Elements ≥ fromElement.
+- NavigableSet<E> subSet(E fromElement, E toElement) → Range [from, to).
+
+Iteration & Bulk Operations
+- Iterator<E> iterator() → Ascending-order iteration (O(1) per element).
+- Iterator<E> descendingIterator() → Reverse-order iteration (O(1) per element).
+- NavigableSet<E> descendingSet() → Reverse-order view (O(1)).
+
 ### ConcurrentSkipListSet
 #### ⏰ Performance & Time complexity: O(log n) methods it's relatively slower than HashSet or ConcurrentHashMap since it maintains a sorted order. However, i's fast for to other sorted sets like TreeSet it's much faster for multiple threads. Pick it if you need a sorted, thread-safe set.
 
@@ -397,6 +424,8 @@ TreeSet: The internal structure (Red-Black Tree) locks the entire tree or parts 
 
 TreeSet is ideal when you need a sorted set and don't need thread-safety or plan to manage concurrency externally.
 ConcurrentSkipListSet is the preferred choice for multi-threaded applications that need a sorted set and require thread-safe access without the need for external synchronization.
+
+The performance and time complexity of ConcurrentSkipListSet in Java is O(log n) for basic operations like add(), remove(), and contains(), as it is implemented using a concurrent skip list. It provides efficient concurrent access with fine-grained locking, making it well-suited for multi-threaded environments.
 
 #### Comparator (a seperate interface).
 
