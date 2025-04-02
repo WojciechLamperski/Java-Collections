@@ -6,7 +6,7 @@
     │    ▲
     │    ├── NavigableMap<K, V> // Extends SortedMap, adds navigation methods like lowerKey(), ceilingKey(), etc.
     │         ▲
-    │         ├── TreeMap<K, V>   (implements NavigableMap, extends AbstractSortedMap, uses Red-Black Tree for sorting keys)
+    │         ├── TreeMap<K, V>   (implements NavigableMap, extends AbstractMap, uses Red-Black Tree for sorting keys)
     │         ├── ConcurrentSkipListMap<K, V>   (implements NavigableMap, thread-safe, uses Skip List)    
     │
     ├── ConcurrentMap<K, V> // Extends Map, supports atomic operations for concurrency
@@ -159,10 +159,6 @@ Methods for Navigating the Map:
 - subMap(K fromKey, K toKey): Returns a view of the map containing keys between fromKey (inclusive) and toKey (exclusive).
 
 These methods provide more flexibility in accessing subsets of the map compared to a regular Map.
-
-### AbstractSortedMap
-
-
 
 ### NavigableMap
 
