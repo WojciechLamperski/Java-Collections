@@ -216,7 +216,9 @@ There are 2 classes that implement Set directly (which we will discuss later), i
    + Uses a copy-on-write strategy (modifies a new copy of the array for each write).
    + Implements Set directly so it can be backed by CopyOnWriteArrayList without unnecessary methods from AbstractSet.
    + Extending AbstractSet would not help, as AbstractSet is not designed for concurrent modifications.
- 
+
+It inherits all its methods from Set interface.
+
 ### SortedSet & NavigableSet 
 
 Sorted Set implements Set.
@@ -328,6 +330,8 @@ public boolean add(E e) {
     return map.put(e, PRESENT) == null;
 }
 ```
+
+HashSet inherits all its methods from AbstractSet class and Set interface.
 
 ### LinkedHashSet<E>
 #### ⏰ Performance & Time complexity: Offers O(1) time complexity for add, remove, and contains (like HashSet), but maintains insertion-order iteration with O(1) per-element overhead. Iteration (forEach, iterator) is O(n) but faster than HashSet due to linked-list traversal optimization.
