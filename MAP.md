@@ -75,6 +75,16 @@ Methods not implemented in AbstractMap:
 
 AbstractMap does not implement all methods from Map. Instead, it provides default (or partial) implementations for several methods, including put(), get(), containsKey(), and others, but requires subclasses to implement the entrySet() method, which is central to how the map works.
 
--------------------------------
+### SortedMap
 
-## SortedMap
+A specialized version of the Map interface that guarantees the keys in the map are ordered in a specific way. The key difference between a SortedMap and a regular Map is that a SortedMap ensures that its keys are stored in a defined order, either in their natural order (i.e., the natural ordering of the keys as defined by Comparable), or according to a custom Comparator provided at the time of map creation.
+
+Methods for Navigating the Map:
+- SortedMap adds several methods that help navigate the sorted keys. These methods are:
+- firstKey(): Returns the first (lowest) key in the map.
+- lastKey(): Returns the last (highest) key in the map.
+- headMap(K toKey): Returns a view of the map containing keys less than the specified key toKey.
+- tailMap(K fromKey): Returns a view of the map containing keys greater than or equal to the specified key fromKey.
+- subMap(K fromKey, K toKey): Returns a view of the map containing keys between fromKey (inclusive) and toKey (exclusive).
+
+These methods provide more flexibility in accessing subsets of the map compared to a regular Map.
