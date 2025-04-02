@@ -91,6 +91,12 @@ When we say an atomic operation is indivisible, we mean that once it starts, it 
 
 So atomic methods are operations that fully complete behind the scenes without locking the Map, but at the same time guarantee the complition of the method.
 
+Key Characteristics of Atomic Methods:
+1. Indivisibility – The operation either completes fully or doesn’t happen at all. No other thread can see a half-finished update.
+2. Thread Safety – Atomic methods ensure that no two threads can interfere with each other while performing an operation.
+3. No Partial Updates – Other threads will never see an incomplete modification.
+4. No Locks Needed (in some cases) – Atomic operations often use low-level CPU instructions instead of locks, making them faster than using synchronized blocks
+
 Unique Methods:
 + putIfAbsent(K key, V value): This method atomically inserts a key-value pair into the map if the key is absent. If the key already exists, the map will not change.
 It's useful in concurrent environments where you want to ensure a key-value pair is added only if the key isn't already present.
