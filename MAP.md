@@ -183,3 +183,5 @@ Submap Methods:
 - headMap(K toKey, boolean inclusive) - Gets entries before toKey (for example: headMap(30, true) → {10, 20, 30})
 - tailMap(K fromKey, boolean inclusive) - Gets entries from fromKey onward (for example: tailMap(30, false) → {40, 50})
 
+-------------------------------
+## Map related Classes
