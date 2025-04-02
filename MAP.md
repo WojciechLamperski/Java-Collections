@@ -27,10 +27,6 @@ Map<K, V>
     ├── SortedMap<K, V>   (extends Map, maintains sorted key order)  
     │    ▲  
     │    ├── NavigableMap<K, V>   (extends SortedMap, adds navigation methods like lowerKey(), ceilingKey())  
-    │         ▲  
-    │         ├── ConcurrentSkipListMap<K, V>   (implements NavigableMap, thread-safe, uses Skip List)  
     │  
-    ├── ConcurrentMap<K, V>   (extends Map, supports atomic operations for concurrency)  
-         ▲  
-         ├── ConcurrentHashMap<K, V>   (implements ConcurrentMap, high-performance thread-safe hash table)  
+    ├── ConcurrentMap<K, V>   (extends Map, supports atomic operations for concurrency)   
 ```
