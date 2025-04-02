@@ -331,7 +331,7 @@ public boolean add(E e) {
 }
 ```
 
-HashSet inherits all its methods from AbstractSet class and Set interface.
+HashSet inherits all its methods from AbstractSet class.
 
 ### LinkedHashSet<E>
 #### ⏰ Performance & Time complexity: Offers O(1) time complexity for add, remove, and contains (like HashSet), but maintains insertion-order iteration with O(1) per-element overhead. Iteration (forEach, iterator) is O(n) but faster than HashSet due to linked-list traversal optimization.
@@ -352,6 +352,7 @@ public class LinkedHashSet<E> extends HashSet<E> {
     }
 }
 ```
+It inherits all its methods from AbstractSet class.
 
 ### TreeSet<E>
 #### ⏰ Performance & Time complexity: Almost all of it's methods have O(log n) time complexity (besides first() and last() methods) It's less performance efficient than HashMap.
