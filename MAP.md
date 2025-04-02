@@ -23,7 +23,9 @@
 ```
 -------------------------------
 
-## Map <K, V>
+## Interfaces & Abstract Classes
+
+### Map <K, V>
 
 Map<K, V> in Java is conceptually similar to JavaScript’s Object with more built-in methods to make working with key-value pairs easier and more efficient.
 
