@@ -380,7 +380,8 @@ public class LinkedHashSet<E> extends HashSet<E> {
 ```
 
 ### ConcurrentSkipListSet
-#### TODO ⏰ Performance & Time complexity: O(log n) (traverses a skip list)
+#### ⏰ Performance & Time complexity: O(log n) methods it's relatively slower than HashSet or ConcurrentHashMap since it maintains a sorted order. However, i's fast for to other sorted sets like TreeSet it's much faster for multiple threads. Pick it if you need a sorted, thread-safe set.
+
 Another method that uses NavigableSet is ConcurrentSkipListSet. Instead of using Red-Black Tree it uses a Skip List, a probabilistic data structure designed for fast search, insertion, and deletion. Like TreeSet, elements in ConcurrentSkipListSet are stored in sorted order, using natural ordering or a Comparator. Another thing to consider is Time Complexity: Operations like add(), remove(), and contains() typically have O(log n) time complexity, but due to the probabilistic nature of Skip Lists, the actual performance can vary. However, it's typically considered to be more efficient for concurrent access.
 
 TreeSet is not thread-safe. If multiple threads try to modify a TreeSet concurrently, you'll need to manually synchronize access using synchronized blocks or other concurrency mechanisms (e.g., ReentrantLock).
