@@ -380,7 +380,7 @@ public class LinkedHashSet<E> extends HashSet<E> {
 ```
 
 ### ConcurrentSkipListSet
-#### Performance: O(log n) (traverses a skip list)
+#### TODO ⏰ Performance & Time complexity: O(log n) (traverses a skip list)
 Another method that uses NavigableSet is ConcurrentSkipListSet. Instead of using Red-Black Tree it uses a Skip List, a probabilistic data structure designed for fast search, insertion, and deletion. Like TreeSet, elements in ConcurrentSkipListSet are stored in sorted order, using natural ordering or a Comparator. Another thing to consider is Time Complexity: Operations like add(), remove(), and contains() typically have O(log n) time complexity, but due to the probabilistic nature of Skip Lists, the actual performance can vary. However, it's typically considered to be more efficient for concurrent access.
 
 TreeSet is not thread-safe. If multiple threads try to modify a TreeSet concurrently, you'll need to manually synchronize access using synchronized blocks or other concurrency mechanisms (e.g., ReentrantLock).
@@ -436,7 +436,7 @@ public class SkipListSetCustomComparatorExample {
 }
 ```
 ### EnumSet<E>  
-#### Performance: O(1) operations (due to bitwise operations)
+#### ⏰ Performance & Time complexity: Super fast O(1) operations (due to bitwise operations)
 It's a specialized Set implementation exclusively for enum types. It is highly optimized, using bitwise operations (operations on each Enums bit representation) instead of hash-based storage like HashSet.
 
 Key characteristics:
@@ -478,6 +478,7 @@ YELLOW = 0b1000  (8 in decimal)   → Bit at position 3 is set
 EnumSet is a specialized implementation of the Set interface designed specifically for storing enum constants (values from an enum type) in Java. It offers very efficient operations compared to other Set implementations due to its internal use of bitwise operations.
 
 ### CopyOnWriteArraySet
+#### ⏰ Performance & Time complexity: Very fast O(1) & O(n) Read operations - because they don't block other Threads. Costly Write operations O(n) - that's because can't write just a single value but a whole array each time. 
 
 CopyOnWriteArraySet is a thread-safe implementation of the Set interface that uses a copy-on-write strategy to handle modifications. It is optimized for scenarios where reads significantly outnumber writes.
 
@@ -508,4 +509,7 @@ Methods:
 
 Performance Characteristics:
 + Read operations (contains(), size(), iteration) are very fast - O(1) - since they operate on a stable array copy.
+ + Read operations don’t require locking or blocking other threads.
+ + But they can still be O(n) if scanning the array is necessary (like in contains()).
+ + Only direct lookups (like size()) are O(1).  
 + Write operations (add(), remove()) are costly - O(n) - due to array copying.
