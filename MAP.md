@@ -41,3 +41,14 @@ It has the following methods:
 - putIfAbsent(K key, V value) - Adds a new key-value pair only if key is absent
 - replace(K key, V value) - Updates an existing key’s value
 - merge(K key, V value, BiFunction<V,V,V> remappingFunction) - Merges a value into an existing key
+- clear() - Removes all entries from the map
+- size() - Returns the number of key-value pairs in the map
+- isEmpty() - Checks if the map is empty
+- forEach(BiConsumer<? super K,? super V> action) - Performs the given action for each entry in the map
+- putAll(Map<? extends K,? extends V> m) - Copies all the entries from another map into this map
+- replaceAll(BiFunction<? super K,? super V,? extends V> function) - Replaces all values in the map using a given function
+- computeIfAbsent(K key, Function<? super K,? extends V> mappingFunction) - Computes the value for a key if it is absent
+- computeIfPresent(K key, BiFunction<? super K,? super V,? extends V> remappingFunction) - Computes a new value for a key if it's present
+- compute(K key, BiFunction<? super K,? super V,? extends V> remappingFunction) - Computes a new value for a key regardless of its current presence
+
+
