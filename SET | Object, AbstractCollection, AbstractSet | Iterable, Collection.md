@@ -476,3 +476,36 @@ YELLOW = 0b1000  (8 in decimal)   → Bit at position 3 is set
 + Very memory-efficient (especially compared to HashSet).
 
 EnumSet is a specialized implementation of the Set interface designed specifically for storing enum constants (values from an enum type) in Java. It offers very efficient operations compared to other Set implementations due to its internal use of bitwise operations.
+
+## CopyOnWriteArraySet
+
+CopyOnWriteArraySet is a thread-safe implementation of the Set interface that uses a copy-on-write strategy to handle modifications. It is optimized for scenarios where reads significantly outnumber writes.
+
+- Backed by CopyOnWriteArrayList<E>, meaning every modification (add, remove, etc.) creates a new copy of the underlying array.
+- Thread-safe without explicit synchronization—multiple threads can safely read the set without locking.
+- Best suited for scenarios with frequent reads and infrequent writes (e.g., caching, event listener management).
+- Iteration provides a snapshot view, meaning iterators never throw ConcurrentModificationException.
+- Maintains insertion order, like LinkedHashSet, because it's backed by an array.
+- Does not allow duplicates, just like all Set implementations.
+
+CopyOnWriteArraySet<E> is essentially a wrapper around CopyOnWriteArrayList<E>, which manages the elements as follows:
+1. On every modification (add, remove, clear, etc.), a new copy of the array is created instead of modifying the existing one.
+2. Reads (contains, iteration, size, etc.) are extremely fast because they operate on an immutable snapshot.
+3. No locking required for iteration, unlike Collections.synchronizedSet() which requires explicit synchronization.
+
+Best Use Cases:
++ Event listeners: Since they are frequently read but rarely modified.
++ Caching: Read-heavy scenarios where updates are infrequent.
++ Multithreading: Safe to use across multiple threads without locks.
++ Scenarios requiring safe iteration: Since iterators never fail due to concurrent modifications.
+
+Methods:
+- add(E e) - Checks for duplicates (contains()). If absent, creates a new copy of the array with e added.
+- remove(E e) - Creates a new array copy without e.
+- contains(E e) - Performs a linear search (O(n)) on the array.
+- size() - Returns the number of elements (O(1)).
+- iterator() - Returns an immutable snapshot-based iterator that never fails with ConcurrentModificationException.
+
+Performance Characteristics:
++ Read operations (contains(), size(), iteration) are very fast - O(1) - since they operate on a stable array copy.
++ Write operations (add(), remove()) are costly - O(n) - due to array copying.
