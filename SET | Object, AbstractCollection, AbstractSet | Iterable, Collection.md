@@ -477,7 +477,7 @@ YELLOW = 0b1000  (8 in decimal)   → Bit at position 3 is set
 
 EnumSet is a specialized implementation of the Set interface designed specifically for storing enum constants (values from an enum type) in Java. It offers very efficient operations compared to other Set implementations due to its internal use of bitwise operations.
 
-## CopyOnWriteArraySet
+### CopyOnWriteArraySet
 
 CopyOnWriteArraySet is a thread-safe implementation of the Set interface that uses a copy-on-write strategy to handle modifications. It is optimized for scenarios where reads significantly outnumber writes.
 
