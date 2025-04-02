@@ -1,3 +1,4 @@
+## Hierarchy of Map - classes
 ```mathematica
 Map<K, V>  
     ▲  
@@ -18,4 +19,18 @@ Map<K, V>
     ├── ConcurrentHashMap<K, V>   (implements ConcurrentMap, thread-safe, uses segment-based locking)  
     │  
     ├── ConcurrentSkipListMap<K, V>   (implements NavigableMap, thread-safe, uses a Skip List)  
+```
+## Hierarchy of Map - Interfaces:
+```mathematica
+Map<K, V>  
+    ▲  
+    ├── SortedMap<K, V>   (extends Map, maintains sorted key order)  
+    │    ▲  
+    │    ├── NavigableMap<K, V>   (extends SortedMap, adds navigation methods like lowerKey(), ceilingKey())  
+    │         ▲  
+    │         ├── ConcurrentSkipListMap<K, V>   (implements NavigableMap, thread-safe, uses Skip List)  
+    │  
+    ├── ConcurrentMap<K, V>   (extends Map, supports atomic operations for concurrency)  
+         ▲  
+         ├── ConcurrentHashMap<K, V>   (implements ConcurrentMap, high-performance thread-safe hash table)  
 ```
