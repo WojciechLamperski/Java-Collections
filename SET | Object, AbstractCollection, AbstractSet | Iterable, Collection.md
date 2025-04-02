@@ -203,7 +203,7 @@ HashSet, LinkedHashSet, and TreeSet all extend AbstractSet. But there are some c
 - EnumSet which implements Set directly for better performance with enums.
 - ConcurrentSkipListSet which implements NavigableSet directly, optimized for concurrency.
 - CopyOnWriteArraySet which implements Set directly for thread safety.
-- 
+ 
 What is the difference between extending AbstractSet and implementing Set directly,? 
 
 Extending AbstractSet vs. Implementing Set directly comes down to trade-offs in performance, memory usage, and special behavior. Implementing Set directly is often chosen for performance-critical or concurrent collections.
