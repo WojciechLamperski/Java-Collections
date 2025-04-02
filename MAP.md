@@ -75,6 +75,71 @@ Methods not implemented in AbstractMap:
 
 AbstractMap does not implement all methods from Map. Instead, it provides default (or partial) implementations for several methods, including put(), get(), containsKey(), and others, but requires subclasses to implement the entrySet() method, which is central to how the map works.
 
+### ConcurrentMap
+
+It extends the Map interface and is specifically designed for use in concurrent (multithreaded) environments. It provides additional methods that allow safe and efficient operations in scenarios where multiple threads might be accessing or modifying the map simultaneously.
+Therefore ConcurentMap is essentially like a Map, but for multithreading with methods that are usefull when working with multiple threads.
+
+- The ConcurrentMap interface is designed to handle concurrent access from multiple threads, ensuring that operations like put(), get(), and remove() are safe and do not lead to inconsistent states.
+- ConcurrentMap provides several **atomic operations** that allow for updates to be made to the map in a thread-safe manner without locking the entire map. These operations typically modify the map based on the presence or absence of keys, and they are designed to handle concurrency efficiently.
+
+Atomic operations are operations that execute as a single, indivisible step, meaning they cannot be interrupted by other threads. In multithreading, atomic operations are crucial because they prevent race conditions—situations where multiple threads try to read/write shared data at the same time, leading to inconsistent results. They are used to perform thread-safe operations without locking the entire map.
+
+How can atomic methods be indivisible and not interrupted, yet still not block other threads? The key lies in how they achieve this.
+
+When we say an atomic operation is indivisible, we mean that once it starts, it completes in a single step at the hardware level. Other threads cannot observe a partial or intermediate state—it’s either entirely done or never happened. However, this does not mean that atomic operations block other threads like a synchronized lock does. Instead, they use low-level CPU instructions (like Compare-And-Swap, or CAS) to make updates without locking the entire data structure.
+
+So atomic methods are operations that fully complete behind the scenes without locking the Map, but at the same time guarantee the complition of the method.
+
+Unique Methods:
++ putIfAbsent(K key, V value): This method atomically inserts a key-value pair into the map if the key is absent. If the key already exists, the map will not change.
+It's useful in concurrent environments where you want to ensure a key-value pair is added only if the key isn't already present.
+```java
+map.putIfAbsent("key1", "value1");
+```
+
++ remove(Object key, Object value): This method removes the key-value pair only if the key is present and is associated with the specified value.
+It's atomic in that it ensures that the pair is only removed if no other thread modifies the key-value pair during the operation.
+```java
+map.remove("key1", "value1");  // Removes if key1 is associated with "value1"
+```
+
++ replace(K key, V oldValue, V newValue): This method replaces the value associated with the specified key only if the current value matches the expected oldValue.
+It helps ensure that changes are made only when certain conditions are met, which is essential for maintaining consistency in multithreaded environments.
+```java
+map.replace("key1", "oldValue", "newValue");
+```
+
++ replace(K key, V value): This method replaces the value for the specified key if the key is already present in the map.
+It is typically used when you need to update the value for an existing key.
+```java
+map.replace("key1", "newValue");
+```
++ compute(K key, BiFunction<? super K,? super V,? extends V> remappingFunction): This method computes a new value for the specified key based on the current value and the provided function. If the key is not present, a new entry is created.
+It's useful for applying custom logic when updating or adding values.
+```java
+map.compute("key1", (k, v) -> v == null ? "newValue" : v.toUpperCase());
+```
+
++ computeIfAbsent(K key, Function<? super K,? extends V> mappingFunction): This method computes a new value for the specified key only if the key is absent in the map, using the provided function. This ensures that the value is only computed when necessary.
+```java
+map.computeIfAbsent("key1", key -> "computedValue");
+```
+
++ computeIfPresent(K key, BiFunction<? super K,? super V,? extends V> remappingFunction):
+This method computes a new value for the specified key only if the key is present in the map. It allows for updating the value based on the current value.
+```java
+map.computeIfPresent("key1", (k, v) -> v + " updated");
+```
+
++ forEach(BiConsumer<? super K,? super V> action):
+This method iterates over each entry in the map and applies the provided action (consumer) to each key-value pair.
+```java
+map.forEach((k, v) -> System.out.println(k + "=" + v));
+```
+
+How does ConcurentMap achieve multithreading compared to Map? While Map would typically require synchronization if accessed by multiple threads, ConcurrentMap uses more efficient, fine-grained locking mechanisms (like segment locking in ConcurrentHashMap) to allow multiple threads to work on different parts of the map simultaneously.
+
 ### SortedMap
 
 A specialized version of the Map interface that guarantees the keys in the map are ordered in a specific way. The key difference between a SortedMap and a regular Map is that a SortedMap ensures that its keys are stored in a defined order, either in their natural order (i.e., the natural ordering of the keys as defined by Comparable), or according to a custom Comparator provided at the time of map creation.
