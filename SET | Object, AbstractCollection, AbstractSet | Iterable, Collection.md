@@ -434,3 +434,43 @@ public class SkipListSetCustomComparatorExample {
     }
 }
 ```
+### EnumSet<E> 
+It's a specialized Set implementation exclusively for enum types. It is highly optimized, using bitwise operations (operations on each Enums bit representation) instead of hash-based storage like HashSet.
+
+Key characteristics:
+- Backed by a single long (for ≤ 64 elements) or a long[] (for > 64 elements) - so one long element that represents all the bits
+- Uses bitwise operations for O(1) performance in add(), remove(), contains()
+- No null elements allowed
+- Maintains natural enum order
+- Instead of a HashMap, it stores elements in a bit vector (A bit vector (also called a bit array, bitset, or bitmap) is a data structure that efficiently stores bits (0s and 1s) in a contiguous block of memory. Each bit in a bit vector represents a binary value, and these bits are typically used to represent a series of boolean flags or other values that can either be true or false.).
+- Each enum is assigned a bit position (based on its ordinal value).
+- Example. Let's say we have the following enum:
+```java
+enum Color { RED, GREEN, BLUE, YELLOW } // ordinals: 0,1,2,3
+```
+Each enum constant gets an ordinal index automatically assigned (that's not part of EnumSet yet):
+```
+RED    -> ordinal = 0
+GREEN  -> ordinal = 1
+BLUE   -> ordinal = 2
+YELLOW -> ordinal = 3
+```
+- When you create an EnumSet containing { RED, BLUE }, it is stored as a bit vector in a single long variable.
+```
+RED    = 0b0001  (1 in decimal)   → Bit at position 0 is set
+GREEN  = 0b0010  (2 in decimal)   → Bit at position 1 is set
+BLUE   = 0b0100  (4 in decimal)   → Bit at position 2 is set
+YELLOW = 0b1000  (8 in decimal)   → Bit at position 3 is set
+```
+- you get the following methods that use bit-related operatons (no point to dwell on them outside of them being very efficient and O(1) operations):
++ add(E e) - Uses **bitwise OR (`
++ remove(E e) - Uses bitwise AND (&) with NOT (~) to clear the bit
++ contains(E e) - Uses bitwise AND (&) to check if a bit is set
++ size() - Counts the number of set bits
++ iterator() - Iterates over set bits (ordinal values)
+
+- Performance:
++ Super fast O(1) operations (add(), remove(), contains()) due to bitwise operations.
++ Very memory-efficient (especially compared to HashSet).
+
+EnumSet is a specialized implementation of the Set interface designed specifically for storing enum constants (values from an enum type) in Java. It offers very efficient operations compared to other Set implementations due to its internal use of bitwise operations.
