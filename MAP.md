@@ -5,16 +5,15 @@
     ├── SortedMap<K, V> // Extends Map, maintains sorted key order
     │    ▲
     │    ├── NavigableMap<K, V> // Extends SortedMap, adds navigation methods like lowerKey(), ceilingKey(), etc.
-    │    │    ▲
-    │    │    ├── TreeMap<K, V>   (implements NavigableMap, extends AbstractSortedMap, uses Red-Black Tree for sorting keys)
-    │    │    ├── ConcurrentSkipListMap<K, V>   (implements NavigableMap, thread-safe, uses Skip List)
-    │    │
-    │    ├── EnumMap<K extends Enum<K>, V>   (implements Map directly, optimized for enums, uses an array)
+    │         ▲
+    │         ├── TreeMap<K, V>   (implements NavigableMap, extends AbstractSortedMap, uses Red-Black Tree for sorting keys)
+    │         ├── ConcurrentSkipListMap<K, V>   (implements NavigableMap, thread-safe, uses Skip List)    
     │
     ├── ConcurrentMap<K, V> // Extends Map, supports atomic operations for concurrency
     │    ▲
     │    ├── ConcurrentHashMap<K, V>   (implements ConcurrentMap, thread-safe, uses segment-based locking)
     │
+    ├── EnumMap<K extends Enum<K>, V>   (implements Map directly, optimized for enums, uses an array)
     ├── HashMap<K, V>   (extends AbstractMap, uses hash table + linked list/binary tree for collision handling)
     ├── LinkedHashMap<K, V>   (extends HashMap, maintains insertion order with a doubly linked list)
     ├── WeakHashMap<K, V>   (extends AbstractMap, uses weak references for garbage collection)
