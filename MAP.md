@@ -6,7 +6,7 @@
     │    ▲
     │    ├── NavigableMap<K, V> // Extends SortedMap, adds navigation methods like lowerKey(), ceilingKey(), etc.
     │    │    ▲
-    │    │    ├── TreeMap<K, V>   (implements NavigableMap, uses Red-Black Tree for sorting keys)
+    │    │    ├── TreeMap<K, V>   (implements NavigableMap, extends AbstractSortedMap, uses Red-Black Tree for sorting keys)
     │    │    ├── ConcurrentSkipListMap<K, V>   (implements NavigableMap, thread-safe, uses Skip List)
     │    │
     │    ├── EnumMap<K extends Enum<K>, V>   (implements Map directly, optimized for enums, uses an array)
