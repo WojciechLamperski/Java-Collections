@@ -159,3 +159,27 @@ Methods for Navigating the Map:
 - subMap(K fromKey, K toKey): Returns a view of the map containing keys between fromKey (inclusive) and toKey (exclusive).
 
 These methods provide more flexibility in accessing subsets of the map compared to a regular Map.
+
+### AbstractSortedMap
+
+
+
+### NavigableMap
+
+It's an extension of SortedMap<K, V> that provides navigation methods to find entries before or after a given key. It enables efficient range queries, floor/ceiling lookups, and reverse order views. It maintains keys in sorted order from SortedMap, and adds methods for finding closest matches and reverse order views.
+
+Methods for fiding nearest entry:
+- lowerKey(K key) - Largest key strictly less than key (for example: lowerKey(25) → 20)
+- floorKey(K key) - Largest key less than or equal to key (for example: floorKey(30) → 30)
+- ceilingKey(K key) - Smallest key greater than or equal to key (for example: ceilingKey(25) → 30)
+- higherKey(K key) - Smallest key strictly greater than key (for example: higherKey(30) → 40)
+
+Methods for reversing order:
+- descendingMap() - Returns a reversed-order view of the map
+- descendingKeySet() - Returns a reversed-order set of keys
+
+Submap Methods:
+- subMap(K fromKey, boolean fromInclusive, K toKey, boolean toInclusive) - Gets a range of keys between fromKey and toKey (for example: subMap(20, true, 40, false) → {20, 30})
+- headMap(K toKey, boolean inclusive) - Gets entries before toKey (for example: headMap(30, true) → {10, 20, 30})
+- tailMap(K fromKey, boolean inclusive) - Gets entries from fromKey onward (for example: tailMap(30, false) → {40, 50})
+
