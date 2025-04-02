@@ -25,7 +25,7 @@
 
 ## Map <K, V>
 
-Map<K, V> in Java is conceptually similar to JavaScript’s Object, but with fewer restrictions and more built-in methods to make working with key-value pairs easier and more efficient.
+Map<K, V> in Java is conceptually similar to JavaScript’s Object with more built-in methods to make working with key-value pairs easier and more efficient.
 
 K stands for Key. V stands for Value. Key and value can be of any Type, which is more flexible than Object with fields and field values.
 
