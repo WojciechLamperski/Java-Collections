@@ -1,4 +1,4 @@
-## Hierarchy of Map - classes
+## Hierarchy of Map - Classes
 ```mathematica
 Map<K, V>  
     ▲  
