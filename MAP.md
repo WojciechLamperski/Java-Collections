@@ -51,4 +51,25 @@ It has the following methods:
 - computeIfPresent(K key, BiFunction<? super K,? super V,? extends V> remappingFunction) - Computes a new value for a key if it's present
 - compute(K key, BiFunction<? super K,? super V,? extends V> remappingFunction) - Computes a new value for a key regardless of its current presence
 
+### AbstractMap 
+
+Methods: 
+- put(K key, V value): This method is implemented in AbstractMap and simply calls entrySet() to add the key-value pair to the map via an Entry. Subclasses need to provide their own entrySet() implementation to define how the key-value pair is added.
+- get(Object key): This method is implemented by calling the entrySet() method and checking each entry. It uses the equals() method to find a matching key and return its corresponding value. Subclasses need to implement entrySet() to define how to access entries.
+- containsKey(Object key): This method is implemented in AbstractMap by iterating over the entrySet() and checking for a matching key.
+- containsValue(Object value): This method is also implemented by iterating over the entrySet() and checking for matching values.
+- remove(Object key): This method is implemented in AbstractMap by iterating over the entrySet() to find and remove the entry with the specified key.
+- clear(): This method is implemented in AbstractMap and removes all entries from the map by clearing the entrySet().
+- keySet(): This method is implemented in AbstractMap by calling entrySet() and returning a set of the map's keys.
+- values(): This method is implemented by calling entrySet() and returning a collection of the map's values.
+- entrySet(): This method is abstract in AbstractMap. It must be implemented by subclasses to return a Set of the map's key-value entries.
+- putAll(Map<? extends K, ? extends V> m): This method is implemented in AbstractMap by calling entrySet() on the provided map and using put() to add the entries to the current map. It's a default implementation and can be overridden by subclasses if necessary.
+- isEmpty(): This method is implemented in AbstractMap by calling the size() method. It's a default implementation that can be used by subclasses.
+- size(): The size method is implemented in AbstractMap by calling entrySet(). It returns the number of entries in the map by using entrySet().size().
+- toString(): AbstractMap provides a toString() method that converts the map to a string representation. It calls entrySet() to obtain the entries and builds a string representation in the form of {key1=value1, key2=value2, ...}.
+
+Methods not implemented in AbstractMap:
+- equals(Object o) and hashCode(): AbstractMap does not provide a default implementation of equals() and hashCode(). These methods are left to subclasses to define based on the specific Map implementation. In most cases, subclasses override these methods to compare Map entries properly.
+
+AbstractMap does not implement all methods from Map. Instead, it provides default (or partial) implementations for several methods, including put(), get(), containsKey(), and others, but requires subclasses to implement the entrySet() method, which is central to how the map works.
 
