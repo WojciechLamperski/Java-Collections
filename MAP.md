@@ -1,4 +1,4 @@
-## Hierarchy of Map - Classes
+## Hierarchy of Map
 ```mathematica
     Map<K, V> // Root Interface
     ▲
