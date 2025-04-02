@@ -73,3 +73,6 @@ Methods not implemented in AbstractMap:
 
 AbstractMap does not implement all methods from Map. Instead, it provides default (or partial) implementations for several methods, including put(), get(), containsKey(), and others, but requires subclasses to implement the entrySet() method, which is central to how the map works.
 
+-------------------------------
+
+## SortedMap
