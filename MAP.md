@@ -1,17 +1,17 @@
 ## Hierarchy of Map - Classes
 ```mathematica
-    Map<K, V> //Interface
+    Map<K, V> // Root Interface
     ▲
-    ├── SortedMap<K, V>   (extends Map, maintains sorted key order) //Interface
+    ├── SortedMap<K, V> // Extends Map, maintains sorted key order
     │    ▲
-    │    ├── NavigableMap<K, V>   (extends SortedMap, adds navigation methods like lowerKey(), ceilingKey(), etc.) //Interface
+    │    ├── NavigableMap<K, V> // Extends SortedMap, adds navigation methods like lowerKey(), ceilingKey(), etc.
     │    │    ▲
     │    │    ├── TreeMap<K, V>   (implements NavigableMap, uses Red-Black Tree for sorting keys)
     │    │    ├── ConcurrentSkipListMap<K, V>   (implements NavigableMap, thread-safe, uses Skip List)
     │    │
     │    ├── EnumMap<K extends Enum<K>, V>   (implements Map directly, optimized for enums, uses an array)
     │
-    ├── ConcurrentMap<K, V>  (extends Map, supports atomic operations for concurrency) //Interface
+    ├── ConcurrentMap<K, V> // Extends Map, supports atomic operations for concurrency
     │    ▲
     │    ├── ConcurrentHashMap<K, V>   (implements ConcurrentMap, thread-safe, uses segment-based locking)
     │
