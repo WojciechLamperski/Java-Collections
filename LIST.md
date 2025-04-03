@@ -17,7 +17,7 @@ List<E> // Root Interface
 
 ### List
 
-The List interface in Java is part of the java.util package and extends the Collection interface. It represents an ordered collection (also called a sequence) of elements, allowing duplicate elements and providing the ability to insert, remove, and access elements by their index position.
+The List interface in Java is part of the java.util package and extends the Collection interface. It represents an ordered collection (also called a sequence) of elements, allowing duplicate elements and providing the ability to insert, remove, and access elements by their index position. Unlike arrays they have flexible size, and don't require to specify a size of List each time you create one.
 
 Key Characteristics of a List:
 + Order of Elements: A List maintains the order in which elements are inserted. This means that elements in a List are stored in a particular sequence, and the order is preserved when you **iterate** over it.
@@ -48,7 +48,7 @@ It's an abstract class in the Java Collections Framework that provides a skeleta
 While AbstractList provides default implementations for many methods, it relies on subclasses to implement certain essential methods, such as get(int index) and size(), and these are actually the only methods not implemented by AbstractList from the List interface, the implementations of other methods rely heavily on get(int index) and size() leaving the specifics of them to how these two methods will be implemented in individual subclasses. Which is the same as is the case with many other Abstract Classes such as AbstractSet for example.
 
 ### ArrayList
-ArrayList<E> is a resizable array implementation of the List interface. It provides fast random access, dynamic resizing, and order preservation, making it one of the most commonly used data structures in Java. Essentially a normal array neeeds to know the size of the list beforehand, but ArrayList doesn't require that. It also differs in how it exposes its elements to a user when compared with normal array.
+ArrayList<E> is a resizable array implementation of the List interface. It provides fast random access, dynamic resizing (like all Lists btw.), and order preservation, making it one of the most commonly used data structures in Java.
 
 Key Characteristics:
 - Implements List<E>, extends AbstractList<E>
