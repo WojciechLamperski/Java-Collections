@@ -47,6 +47,16 @@ It's an abstract class in the Java Collections Framework that provides a skeleta
 
 While AbstractList provides default implementations for many methods, it relies on subclasses to implement certain essential methods, such as get(int index) and size(), and these are actually the only methods not implemented by AbstractList from the List interface, the implementations of other methods rely heavily on get(int index) and size() leaving the specifics of them to how these two methods will be implemented in individual subclasses. Which is the same as is the case with many other Abstract Classes such as AbstractSet for example.
 
+### AbstractSequentialList
+It provides a skeletal implementation of the List interface, specifically for lists that are not backed by arrays but by other data structures (e.g., linked lists). It is part of the Java Collections Framework and is used as a base class for lists that store their elements in a sequential manner, such as doubly linked lists or other sequential data structures.
+
+So it's like an AbstractList, but for Classes not backed by Array - ergo not for ArrayList. It assumes that the list elements are stored in a different kind of data structure (like a linked list or a queue).
+
+It focuses on lists (like inked lists or queues) where elements are not stored in contiguous memory locations, such as linked lists, where index-based access is slower but adding/removing elements is more efficient at the start or middle of the list. Its key methods like get(int index) and listIterator(int index) are designed for efficient traversal of sequential data structures.
+
+##### Sequentiality
+The concept of sequentiality in AbstractSequentialList refers to how the list is structured and accessed in a linear fashion, typically from one element to the next, in contrast to a structure that allows for random access (like an array or ArrayList). Sequentially-accessed lists (like LinkedList) are typically slower for operations like random access (i.e., accessing an element at a specific index) since you need to traverse the list element by element. However, operations like insertions and deletions in the middle of the list are faster in sequential structures because they don't require shifting elements (as in an ArrayList). Instead, only the links between elements need to be updated.
+
 ### ArrayList
 ArrayList<E> is a resizable array implementation of the List interface. It provides fast random access, dynamic resizing (like all Lists btw.), and order preservation, making it one of the most commonly used data structures in Java.
 
