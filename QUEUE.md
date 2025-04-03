@@ -25,19 +25,19 @@ Use Cases of Queue
 
 ##### Queue Implementations:
 
-- LinkedList<E> - Implements Queue<E> and Deque<E>, doubly linked list-based. Allows null elements. Suitable for simple FIFO behavior.
+- **LinkedList<E>** - Implements Queue<E> and Deque<E>, doubly linked list-based. Allows null elements. Suitable for simple FIFO behavior.
   + Uses more memory due to extra node pointers, better for frequent insertions/removals.
 
-- PriorityQueue<E> - Not strictly FIFO; elements are ordered based on natural ordering or a Comparator. Good for task scheduling where priority is needed.
+- **PriorityQueue<E>** - Not strictly FIFO; elements are ordered based on natural ordering or a Comparator. Good for task scheduling where priority is needed.
   + Best for priority-based tasks, but slower than FIFO queues for simple insert/removal.
 
-- ArrayDeque<E> - Faster than LinkedList for queue operations. Used for both FIFO (Queue) and LIFO (Stack) operations. Does not allow null.
+- **ArrayDeque<E>** - Faster than LinkedList for queue operations. Used for both FIFO (Queue) and LIFO (Stack) operations. Does not allow null.
   + Faster than LinkedList, avoids extra memory for node pointers, but resizing can be costly.
 
-- ConcurrentLinkedQueue<E> - Thread-safe, lock-free non-blocking queue. Uses CAS (Compare-And-Swap) operations for performance in multi-threaded environments.
+- **ConcurrentLinkedQueue<E>** - Thread-safe, lock-free non-blocking queue. Uses CAS (Compare-And-Swap) operations for performance in multi-threaded environments.
   + Lock-free, ideal for high-concurrency environments. Slight overhead due to atomic operations.
 
-- BlockingQueue<E> (Sub-interface of Queue) - Used in multi-threading, blocking when empty or full.
+- **BlockingQueue<E>** (Sub-interface of Queue) - Used in multi-threading, blocking when empty or full.
   + Implementations:
      * LinkedBlockingQueue (linked list-based, optional capacity)
      * ArrayBlockingQueue (array-based, fixed capacity)
