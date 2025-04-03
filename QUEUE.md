@@ -13,15 +13,15 @@ Key Features of Queue
 - Thread-Safety: Some implementations, like ConcurrentLinkedQueue, are designed for multi-threaded environments.
 
 Anti-Use Cases
-❌ Random Access – Lists (ArrayList, LinkedList) are better.
-❌ LIFO Behavior – Use Deque (e.g., ArrayDeque, Stack) instead.
-❌ Fast Lookup by Value – Set or Map would be better choices.
+- ❌ Random Access – Lists (ArrayList, LinkedList) are better.
+- ❌ LIFO Behavior – Use Deque (e.g., ArrayDeque, Stack) instead.
+- ❌ Fast Lookup by Value – Set or Map would be better choices.
 
 Use Cases of Queue
-✔ Task Scheduling – Thread pools, event processing.
-✔ Producer-Consumer Problems – BlockingQueue helps in managing concurrent data.
-✔ Breadth-First Search (BFS) – Queues help traverse trees and graphs.
-✔ Message Queues – Background processing and messaging systems (e.g., Kafka).
+- ✔ Task Scheduling – Thread pools, event processing.
+- ✔ Producer-Consumer Problems – BlockingQueue helps in managing concurrent data.
+- ✔ Breadth-First Search (BFS) – Queues help traverse trees and graphs.
+- ✔ Message Queues – Background processing and messaging systems (e.g., Kafka).
 
 ##### Queue Implementations:
 
