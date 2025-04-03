@@ -31,7 +31,7 @@ Map<K, V> in Java is conceptually similar to JavaScript’s Object with more bui
 
 K stands for Key. V stands for Value. Key and value can be of any Type, which is more flexible than Object with fields and field values.
 
-It has the following methods:
+It introdues the following methods (in addtion to methods inherited from Collection interface, it has methods named the same but the ones here use Key, instead of Object, such as remove):
 - put(K key, V value) - Inserts a key-value pair
 - get(K key) - Retrieves a value by key
 - remove(K key) - Removes an entry by key
