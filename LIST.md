@@ -1,4 +1,18 @@
 ## List Intreface and its classes:
+```java
+List<E> // Root Interface  
+▲  
+├── AbstractList<E>   // (extends AbstractCollection, provides skeletal implementation of List)  
+│    ▲  
+│    ├── ArrayList<E>   (extends AbstractList, uses dynamic array)  
+│    ├── CopyOnWriteArrayList<E>   (extends AbstractList, thread-safe, uses copy-on-write strategy)  
+│    ├── Vector<E>   (extends AbstractList, synchronized, legacy class)  
+│         ▲  
+│         ├── Stack<E>   (extends Vector, LIFO stack implementation)  
+│  
+├── LinkedList<E>   (implements List & Deque, uses doubly linked list)  
+
+```
 
 ### List
 
