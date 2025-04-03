@@ -97,52 +97,7 @@ Key Characteristics of Atomic Methods:
 3. No Partial Updates – Other threads will never see an incomplete modification.
 4. No Locks Needed (in some cases) – Atomic operations often use low-level CPU instructions instead of locks, making them faster than using synchronized blocks
 
-Unique Methods:
-+ putIfAbsent(K key, V value): This method atomically inserts a key-value pair into the map if the key is absent. If the key already exists, the map will not change.
-It's useful in concurrent environments where you want to ensure a key-value pair is added only if the key isn't already present.
-```java
-map.putIfAbsent("key1", "value1");
-```
-
-+ remove(Object key, Object value): This method removes the key-value pair only if the key is present and is associated with the specified value.
-It's atomic in that it ensures that the pair is only removed if no other thread modifies the key-value pair during the operation.
-```java
-map.remove("key1", "value1");  // Removes if key1 is associated with "value1"
-```
-
-+ replace(K key, V oldValue, V newValue): This method replaces the value associated with the specified key only if the current value matches the expected oldValue.
-It helps ensure that changes are made only when certain conditions are met, which is essential for maintaining consistency in multithreaded environments.
-```java
-map.replace("key1", "oldValue", "newValue");
-```
-
-+ replace(K key, V value): This method replaces the value for the specified key if the key is already present in the map.
-It is typically used when you need to update the value for an existing key.
-```java
-map.replace("key1", "newValue");
-```
-+ compute(K key, BiFunction<? super K,? super V,? extends V> remappingFunction): This method computes a new value for the specified key based on the current value and the provided function. If the key is not present, a new entry is created.
-It's useful for applying custom logic when updating or adding values.
-```java
-map.compute("key1", (k, v) -> v == null ? "newValue" : v.toUpperCase());
-```
-
-+ computeIfAbsent(K key, Function<? super K,? extends V> mappingFunction): This method computes a new value for the specified key only if the key is absent in the map, using the provided function. This ensures that the value is only computed when necessary.
-```java
-map.computeIfAbsent("key1", key -> "computedValue");
-```
-
-+ computeIfPresent(K key, BiFunction<? super K,? super V,? extends V> remappingFunction):
-This method computes a new value for the specified key only if the key is present in the map. It allows for updating the value based on the current value.
-```java
-map.computeIfPresent("key1", (k, v) -> v + " updated");
-```
-
-+ forEach(BiConsumer<? super K,? super V> action):
-This method iterates over each entry in the map and applies the provided action (consumer) to each key-value pair.
-```java
-map.forEach((k, v) -> System.out.println(k + "=" + v));
-```
+All methods in ConcurentMap are inherited from Map.
 
 How does ConcurentMap achieve multithreading compared to Map? While Map would typically require synchronization if accessed by multiple threads, ConcurrentMap uses more efficient, fine-grained locking mechanisms (like segment locking in ConcurrentHashMap) to allow multiple threads to work on different parts of the map simultaneously.
 
