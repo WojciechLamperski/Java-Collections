@@ -177,3 +177,24 @@ HashMap doesn't have ordering, it's not thread safe, it has quick lookup speed O
 + When handling large datasets efficiently.
 
 It doesn't introduce any new methods.
+
+### LinkedHashMap
+
+LinkedHashMap<K, V> extends HashMap<K, V> and also inherits from AbstractMap<K, V>. Here's the class hierarchy for LinkedHashMap:
+```java
+public class LinkedHashMap<K, V> extends HashMap<K, V>
+                               implements Map<K, V>
+```
+
+- Extends HashMap<K, V>: LinkedHashMap inherits the core functionality of HashMap, which uses a hash table for storing key-value pairs.
+- Implements Map<K, V>: It implements the Map interface, providing all the methods required by the Map interface, such as put(), get(), remove(), etc.
+- Maintains Insertion Order: The key feature of LinkedHashMap is that it maintains the insertion order of elements. This is achieved by maintaining a doubly-linked list that keeps track of the order of the entries as they are inserted.
+- LinkedHashMap is backed by both a hash table (like HashMap) and a linked list (for maintaining insertion order).
+- It uses the linked list to maintain the order of entries, while the hash table ensures efficient lookups (O(1) for put(), get(), and remove()).
+- It does not extend AbstractMap directly because it needs the more specialized hash table-based operations that are already provided by HashMap. AbstractMap is used more for general-purpose map implementations.
+
+The methods of LinkedHashMap are slightly slower than those of HashMap, but the difference is generally quite small. And maintains O(1) time complexity just as HashMap.
+
+Methods: LinkedHashMap inherits most of its methods directly from Map and HashMap.
+- It overrides iterator() and put() to ensure that entries are iterated or inserted in a specific order.
+- removeEldestEntry() is a custom method in LinkedHashMap that allows users to define a policy for removing entries, but it is optional. It's a protected method that is not implemented by default, instead implementation is left to the user.
