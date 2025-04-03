@@ -6,7 +6,7 @@ List<E> // Root Interface
 │    ▲  
 │    ├── ArrayList<E>   (extends AbstractList, uses dynamic array)  
 │    ├── CopyOnWriteArrayList<E>   (extends AbstractList, thread-safe, uses copy-on-write strategy)  
-│    ├── Vector<E>   (extends AbstractList, synchronized, legacy class)  
+│    ├── Vector<E>   (extends AbstractList, synchronized, legacy class - pick ArrayList instead)  
 │         ▲  
 │         ├── Stack<E>   (extends Vector, LIFO stack implementation)  
 │  
