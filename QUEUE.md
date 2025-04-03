@@ -1,7 +1,7 @@
 
 
 ### Queue
-The Queue<E> interface in Java is part of the java.util package and extends the Collection<E> interface. It represents a FIFO (First-In-First-Out) data structure, where elements are added at the rear and removed from the front.
+The `Queue<E>` interface in Java is part of the java.util package and extends the Collection<E> interface. It represents a FIFO (First-In-First-Out) data structure, where elements are added at the rear and removed from the front.
 It is commonly used for task scheduling, buffering, and breadth-first search (BFS) algorithms.
 
 Key Features of Queue
