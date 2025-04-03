@@ -39,8 +39,8 @@ Use Cases of Queue
 
 - BlockingQueue<E> (Sub-interface of Queue) - Used in multi-threading, blocking when empty or full.
   + Implementations:
-   * LinkedBlockingQueue (linked list-based, optional capacity)
-   * ArrayBlockingQueue (array-based, fixed capacity)
-   * PriorityBlockingQueue (like PriorityQueue but thread-safe)
-   * DelayQueue (elements expire after a delay)
-  + Best for multi-threaded producer-consumer models. However, blocking operations can introduce thread contention.
+     * LinkedBlockingQueue (linked list-based, optional capacity)
+     * ArrayBlockingQueue (array-based, fixed capacity)
+     * PriorityBlockingQueue (like PriorityQueue but thread-safe)
+     * DelayQueue (elements expire after a delay)
+   + Best for multi-threaded producer-consumer models. However, blocking operations can introduce thread contention.
