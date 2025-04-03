@@ -4,9 +4,9 @@ List<E> // Root Interface
 ▲  
 ├── AbstractList<E>   // (extends AbstractCollection, provides skeletal implementation of List)  
 │    ▲  
-│    ├── ArrayList<E>   (extends AbstractList, uses dynamic array)  
-│    ├── CopyOnWriteArrayList<E>   (extends AbstractList, thread-safe, uses copy-on-write strategy)  
-│    ├── Vector<E>   (extends AbstractList, synchronized, legacy class - pick ArrayList instead)  
+│    ├── ArrayList<E>   (implements List, extends AbstractList, uses dynamic array)  
+│    ├── CopyOnWriteArrayList<E>   (implements List, extends AbstractList, thread-safe, uses copy-on-write strategy)  
+│    ├── Vector<E>   (implements List, extends AbstractList, synchronized, legacy class - pick ArrayList instead)  
 │         ▲  
 │         ├── Stack<E>   (extends Vector, LIFO stack implementation, also a legacy class - use Deque (like ArrayDeque or ConcurrentLinkedDeque))  
 │  
