@@ -112,3 +112,44 @@ Performance Characteristics
 - Memory Overhead: The list may require more memory than a normal ArrayList due to the need to maintain copies of the array during write operations.
 
 Since CopyOnWriteArrayList extends AbstractList and implements List, it inherits most of the methods from List, as well as AbstractList. 
+
+### LinkedList
+
+It's a class that implements the List interface and extends AbstractSequentialList. It is a doubly linked list implementation, meaning each element in the list points to both the next and the previous element. This enables efficient insertions and deletions from both ends of the list but does not support fast random access like an ArrayList.
+
+It implements List and Deque: LinkedList implements both the List and Deque interfaces. This means that LinkedList can be used as a List (a collection that allows duplicate elements and maintains insertion order) and as a Deque (a double-ended queue that allows insertion and removal of elements from both ends).
+- Methods from Deque, such as addFirst(), addLast(), removeFirst(), and removeLast(), allow LinkedList to function as a queue or stack, which adds flexibility to its usage.
+
+No Random Access: Unlike an ArrayList, which allows constant-time access to elements by index, LinkedList provides sequential access. This means that to access an element at a specific index, the list has to be traversed from the beginning (or from the end, whichever is closer) to that index, which is an O(n) operation.
+
+Efficient Insertions and Deletions: LinkedList excels at insertions and deletions, especially for operations at the beginning or end of the list. Since elements in a linked list are stored as nodes that contain references to their neighbors, adding or removing an element from the beginning or end of the list only requires updating a few references, and this happens in O(1) time.
+
+However, inserting or deleting elements from the middle of the list still requires finding the position first (which takes O(n) time) before performing the insertion or removal.
+
+Memory Overhead: Unlike ArrayList, which stores elements in a contiguous array, LinkedList requires extra memory for each element to store the next and previous references (pointers), which can increase memory consumption, especially for smaller lists.
+
+Iterator Support: LinkedList provides an efficient ListIterator, which can traverse the list in both directions (forward and backward). This is especially useful when you need to iterate over the list multiple times, modify it during iteration, or perform operations that depend on the order of elements.
+
+When to use LinkedList:
+- Frequent insertions or deletions: If you need to frequently add or remove elements from the beginning or middle of a list, LinkedList can be much more efficient than ArrayList, which requires shifting elements.
+- Queue/Deque operations: Since LinkedList implements Deque, it's useful for implementing queues, stacks, or double-ended queues (deques), where elements are added or removed from both ends.
+- Ordered traversal: If you need to traverse the list from the beginning to the end (or vice versa), LinkedList offers efficient iteration.
+
+When to avoid LinkedList:
+- Random access: If you need fast access to elements at specific indices, LinkedList is not ideal because accessing an element takes O(n) time.
+- Memory overhead: Each element in LinkedList requires extra memory for storing references to the next and previous elements.
+
+##### What is a Deque?
+A Deque (pronounced "deck") stands for "Double-Ended Queue." It is a queue where you can insert and remove elements from both the front (head) and the rear (tail) of the queue. This is different from a regular queue (FIFO), where elements can only be added at the end and removed from the front.
+
+In a Deque:
+- Insertions can happen at both ends: addFirst() for the front and addLast() for the rear.
+- Removals can happen at both ends: removeFirst() for the front and removeLast() for the rear.
+- Peek operations: You can also peek at the first or last element without removing it, with peekFirst() and peekLast().
+
+LinkedList implements all these methods of Deque, and because it is a doubly linked list, it can efficiently perform these operations at both ends.
+
+The main benefit of a Deque is that it provides efficient access to both ends of the collection. LinkedList, being a doubly linked list, allows both the front and the rear to be modified efficiently in constant time, O(1).
+
+If you need to add or remove elements from only one end of the collection, then a regular Queue or Stack might be better. However, if you need operations at both ends, LinkedList is a great choice because of its flexibility and efficiency.
+
