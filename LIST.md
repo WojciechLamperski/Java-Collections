@@ -10,7 +10,7 @@ List<E> // Root Interface
 │         ▲  
 │         ├── Stack<E>   (extends Vector, LIFO stack implementation, also a legacy class - use Deque (like ArrayDeque or ConcurrentLinkedDeque))  
 │  
-├── LinkedList<E>   (implements List & Deque, uses doubly linked list)  
+├── LinkedList<E>   (implements List & Deque, extends AbstractSequentialList, uses doubly linked list)  
 
 ```
 
