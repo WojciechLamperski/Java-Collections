@@ -135,4 +135,45 @@ Submap Methods:
 - tailMap(K fromKey, boolean inclusive) - Gets entries from fromKey onward (for example: tailMap(30, false) → {40, 50})
 
 -------------------------------
+
 ## Classes
+
+### HashMap
+
+Is a key-value pair data structure that allows for constant-time (O(1)) lookups, insertions, and deletions in the average case. It achieves this efficiency using a hash table and a hashing function. It implements its own hash table internally rather than using a pre-built hash table from another Java class or interface.
+
+Extends AbstractMap<K, V> → Gets default implementations for many Map methods.
+Implements Map<K, V> → Ensures it follows Map contract.
+& Implements Cloneable & Serializable → Can be cloned and serialized.
+```java
+public class HashMap<K, V> extends AbstractMap<K, V>
+                           implements Map<K, V>, Cloneable, Serializable
+```
+
+Keys are converted into an array index using a hash function. The hash table stores buckets, each bucket holds entries (key-value pairs). Each bucket uses a linked list or binary tree (since Java 8) for collision handling. 
+
+How Does HashMap Implement a Hash Table?
+- HashMap defines its own array-based hash table internally.
+- It stores buckets in an array of Node<K, V>[] (before Java 8, it was Entry<K, V>[]).
+- The array is indexed using a hashing function based on the key’s hashCode().
+- When collisions occur, it stores entries in a linked list (or a Red-Black tree if needed in Java 8+).
+- The Node<K, V>[] table (an array of these Node objects) represents the hash table. Take a look:
+```java
+static class Node<K, V> implements Map.Entry<K, V> {
+    final int hash;  // Precomputed hash for faster lookups
+    final K key;     // The key
+    V value;         // The associated value
+    Node<K, V> next; // Next node in case of a collision (linked list)
+}
+```
+- Java does not use a separate HashTable class - everything is built into HashMap itself.
+
+HashMap doesn't have ordering, it's not thread safe, it has quick lookup speed O(1) avg, and has medium memory usage.
+
+##### When to Use HashMap?
++ When you need fast lookups (O(1) average time complexity).
++ When ordering of elements does not matter.
++ When using non-thread-safe environments (use ConcurrentHashMap for threads).
++ When handling large datasets efficiently.
+
+It doesn't introduce any new methods.
