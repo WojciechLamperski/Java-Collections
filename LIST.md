@@ -27,8 +27,10 @@ Why Use List in Java?
 - Efficient Random Access: If you need to frequently access elements by their index position, List allows fast random access.
 - Allow Duplicates: If you need a collection that allows duplicate values, List is useful.
 
-
 ### AbstractList
+It's an abstract class in the Java Collections Framework that provides a skeletal implementation of the List interface. It is part of the java.util package and serves as a base class for many concrete implementations of the List interface.
+
+While AbstractList provides default implementations for many methods, it relies on subclasses to implement certain essential methods, such as get(int index) and size(), and these are actually the only methods not implemented by AbstractList from the List interface, the implementations of other methods rely heavily on get(int index) and size() leaving the specifics of them to how these two methods will be implemented in individual subclasses. Which is the same as is the case with many other Abstract Classes such as AbstractSet for example.
 
 ## CopyOnWriteArrayList
 
