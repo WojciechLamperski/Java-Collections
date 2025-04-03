@@ -27,3 +27,20 @@ Why Use List in Java?
 - Efficient Random Access: If you need to frequently access elements by their index position, List allows fast random access.
 - Allow Duplicates: If you need a collection that allows duplicate values, List is useful.
 
+
+### AbstractList
+
+## CopyOnWriteArrayList
+
+It's a thread-safe variant of ArrayList in Java. It is part of the java.util.concurrent package, which provides classes designed for concurrent programming in multi-threaded environments. It is designed for use cases where reads are frequent, and writes (additions, deletions, or updates) are infrequent, making it suitable for scenarios where there is a need for high concurrency and thread safety without using synchronization.
+
+When to Use CopyOnWriteArrayList
+- Read-Heavy Workloads: Ideal for use cases where reads vastly outnumber writes. For example, if you have a collection that is frequently accessed by multiple threads but rarely modified, CopyOnWriteArrayList can provide a high-performance solution with built-in thread safety.
+- Immutability Requirements: If you need a data structure that provides immutability (e.g., to prevent modification during iteration), CopyOnWriteArrayList is useful because it allows safe iteration without concern for external modifications.
+
+Performance Characteristics
+- Read Operations: O(1) – Since the internal array remains unchanged during reads, accessing elements is very fast, and no locks are required for read operations.
+- Write Operations: O(n) – Write operations such as add(), remove(), and set() require copying the entire array, which is an O(n) operation. This can become costly if write operations are frequent.
+- Memory Overhead: The list may require more memory than a normal ArrayList due to the need to maintain copies of the array during write operations.
+
+Since CopyOnWriteArrayList extends AbstractList and implements List, it inherits most of the methods from List, as well as AbstractList. 
