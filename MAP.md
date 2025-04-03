@@ -180,4 +180,4 @@ Submap Methods:
 - tailMap(K fromKey, boolean inclusive) - Gets entries from fromKey onward (for example: tailMap(30, false) → {40, 50})
 
 -------------------------------
-## Map related Classes
+## Classes
