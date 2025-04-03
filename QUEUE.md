@@ -49,9 +49,9 @@ Uses CAS (Compare-And-Swap) operations for performance in multi-threaded environ
 
 - BlockingQueue<E> (Sub-interface of Queue)
 Used in multi-threading, blocking when empty or full.
- - Implementations:
+  - Implementations:
    + LinkedBlockingQueue (linked list-based, optional capacity)
    + ArrayBlockingQueue (array-based, fixed capacity)
    + PriorityBlockingQueue (like PriorityQueue but thread-safe)
    + DelayQueue (elements expire after a delay)
- - Best for multi-threaded producer-consumer models. However, blocking operations can introduce thread contention.
+  - Best for multi-threaded producer-consumer models. However, blocking operations can introduce thread contention.
