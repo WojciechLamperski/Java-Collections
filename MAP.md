@@ -139,6 +139,7 @@ Submap Methods:
 ## Classes
 
 ### HashMap
+##### ⏰ Offers average-case O(1) time for get() and put() using hashing. It's generally the fastest Map implementation but does not maintain order.
 
 Is a key-value pair data structure that allows for constant-time (O(1)) lookups, insertions, and deletions in the average case. It achieves this efficiency using a hash table and a hashing function. It implements its own hash table internally rather than using a pre-built hash table from another Java class or interface.
 
@@ -234,6 +235,7 @@ Map<K, V> map = new HashMap<>(initialCapacity);
 It doesn't introduce any new methods.
 
 ### LinkedHashMap
+##### ⏰ Maintains insertion order with a slight overhead compared to HashMap; time complexity remains O(1) for get() and put() in most cases. It's slightly slower than HashMap.
 
 LinkedHashMap<K, V> extends HashMap<K, V> and also inherits from AbstractMap<K, V>. Here's the class hierarchy for LinkedHashMap:
 ```java
@@ -255,8 +257,10 @@ Methods: LinkedHashMap inherits most of its methods directly from Map and HashMa
 - removeEldestEntry() is a custom method in LinkedHashMap that allows users to define a policy for removing entries, but it is optional. It's a protected method that is not implemented by default, instead implementation is left to the user.
 
 ### TreeMap
+##### ⏰ Implements a Red-Black Tree, providing O(log n) time for get(), put(), and remove(). Maintains keys in sorted order. It's slower than HashMap and LinkedHashMap but provides ordering and range query capabilities.
 
 TreeMap is a class that implements the NavigableMap interface and stores key-value pairs in sorted order according to the natural ordering of the keys, or by a Comparator provided at map creation time.
+TreeMap trades some performance (slower get() and put() at O(log n)) for sorted keys out of the box. In return, it offers fast access to the smallest and largest keys using methods like firstKey() and lastKey(), which are efficient due to the underlying Red-Black Tree structure.So while it's slower than HashMap or LinkedHashMap, it gives you ordering + efficient range queries — a great choice when those features matter.
 
 Things to know:
 
@@ -286,6 +290,7 @@ Red-Black Trees are very efficient. They have fast storage and retrieval of orde
 They work for any type of data, as long as the data can be ordered - which is possible for almost all values since TreeMap uses a Comparator, you just can't mix the values - like using String and Integer.
 
 ### ConcurrentHashMap
+##### ⏰ Thread-safe version of HashMap with O(1) average time for most operations. It's faster than using a synchronized HashMap or Hashtable in concurrent environments, though slightly slower than HashMap in single-threaded scenarios due to synchronization overhead.
 
 ConcurrentHashMap is a thread-safe implementation of the ConcurrentMap interface. It's used when multiple threads need to access and modify a map without external synchronization (i.e., no need to wrap it with Collections.synchronizedMap()).
 
