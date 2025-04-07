@@ -199,4 +199,11 @@ Methods: LinkedHashMap inherits most of its methods directly from Map and HashMa
 - It overrides iterator() and put() to ensure that entries are iterated or inserted in a specific order.
 - removeEldestEntry() is a custom method in LinkedHashMap that allows users to define a policy for removing entries, but it is optional. It's a protected method that is not implemented by default, instead implementation is left to the user.
 
+### TreeMap
+
+
+
+### ConcurrentHashMap
+
+
 ### More classes will be added if needed... Just know that there are similiar to Sets, with classes like TreeMap, EnumMap etc.
