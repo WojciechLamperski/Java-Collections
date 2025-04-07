@@ -44,3 +44,28 @@ Use Cases of Queue
      * PriorityBlockingQueue (like PriorityQueue but thread-safe)
      * DelayQueue (elements expire after a delay)
    + Best for multi-threaded producer-consumer models. However, blocking operations can introduce thread contention.
+ 
+### Deque
+
+Deque stands for "double-ended queue" — a linear collection that allows insertion and removal from both ends, i.e., head and tail.
+It extends the Queue<E> interface, but unlike a regular queue (which is FIFO: First-In-First-Out), a deque can behave like:
++ A queue → add at end, remove from front (offerLast(), pollFirst())
++ A stack → add/remove from the front (push(), pop())
+
+There are two popular implementations of Deque in Java:
+
+#### ArrayDeque
+It's backed by a resizable array. Internally uses a circular array — which wraps around when the end is reached. Keeps track of a head index and tail index to know where to insert/remove. When full, it doubles the array size and copies elements in order (just like ArrayList does). Offers O(1) time for add/remove at both ends — unless resizing happens. Doesn’t allow null elements (they’re used as markers in the internal array).
+
+```java
+int head = 0; // index for front
+int tail = 0; // index for end
+
+// insert at front: decrement head (wrap if needed)
+head = (head - 1 + elements.length) % elements.length;
+
+// insert at end: add to tail, increment (wrap if needed)
+tail = (tail + 1) % elements.length;
+```
+
+#### Another one is an ArrayList, but it is covered in more detail in a file dedicated to List specifically.
