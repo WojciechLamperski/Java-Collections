@@ -232,7 +232,19 @@ They work for any type of data, as long as the data can be ordered - which is po
 
 ### ConcurrentHashMap
 
+ConcurrentHashMap is a thread-safe implementation of the ConcurrentMap interface. It's used when multiple threads need to access and modify a map without external synchronization (i.e., no need to wrap it with Collections.synchronizedMap()).
+
 Things to know:
-+ does not allow null keys or values (to avoid ambiguity in concurrent operations)
++ It does not allow null keys or values (to avoid ambiguity in concurrent operations)
++ It allows concurrent read and write operations.
++ It does not lock the whole map on every write like Hashtable.
++ It offers atomic operations like putIfAbsent, compute, and merge.
++ It uses a lock-free, non-blocking algorithm with CAS (Compare-And-Swap) and fine-grained locks.
++ Uses a hash table of Nodes or linked lists (or trees when collisions are high).
++ Converts a bucket's list into a balanced tree (like Red-Black Tree) when many keys hash to the same bucket (just like HashMap).
+
+❌ Limitations:
++ Slightly slower than HashMap in single-threaded scenarios (because of thread-safety overhead)
++ You cannot use null as a key or value
 
 ### More classes will be added if needed.
