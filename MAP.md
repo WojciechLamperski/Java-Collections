@@ -168,7 +168,31 @@ static class Node<K, V> implements Map.Entry<K, V> {
 ```
 - Java does not use a separate HashTable class - everything is built into HashMap itself.
 
+🪣 Buckets in HashMap
+A HashMap stores key-value pairs in an internal array called table, which consists of buckets.
+Each bucket is a location in that array (think: an index).
+A hash of the key determines which bucket an entry goes into:
 HashMap doesn't have ordering, it's not thread safe, it has quick lookup speed O(1) avg, and has medium memory usage.
+```java
+final int h = hashCode(key);
+final int hash = (h ^ (h >>> 16));
+int bucketIndex = hash & (table.length - 1);
+```
+What happens when multiple keys hash to the same bucket?
+This is called a hash collision. Java handles this in stages:
+1. If two keys hash to the same bucket, their entries are stored in a singly linked list at that index. New entries are added to the front of the list (like a stack). When searching for a key, Java walks through this list using equals().
+2. When a single bucket's linked list becomes too long, it's inefficient to traverse linearly, so Java converts it into a Red-Black Tree for better performance. If the number of entries in a bucket exceeds 8, and the total HashMap capacity is at least 64, the linked list is transformed into a red-black tree. If a tree's size drops below 6 (due to deletions), it gets converted back into a singly linked list.
+
+⚙️ Why Red-Black Tree?
+A red-black tree ensures O(log n) performance for get/put/remove in that bucket.
+It maintains balance (like a self-balancing binary search tree) to avoid worst-case performance.
+
+🤖 A simplified lifecycle of a bucket:
++ Empty: No entry yet
++ Single Entry: One node
++ Few Entries: Stored in a linked list
++ Many Entries: Treeified into a red-black tree
++ Back to Few: If shrunk, detreeify into linked list
 
 ##### When to Use HashMap?
 + When you need fast lookups (O(1) average time complexity).
