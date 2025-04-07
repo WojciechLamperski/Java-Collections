@@ -198,7 +198,32 @@ The bucket number in a HashMap is directly tied to the hash code of the key, and
 <br><br>
 Even though the keys are unique, collisions can still occur in a HashMap, particularly when you have a large number of entries like a million. This is because the bucket index is derived from the hash code of the key, and there are only a finite number of buckets available in the HashMap (determined by the size of the internal table, often a power of 2). Therefore, different keys may end up being hashed to the same bucket index, resulting in a hash collision.
 
-##### How to prevent hash collision?
+##### How to ensure as few elements as possible end up in the same bucket? (which happens often when working with large data)
+1. Override the hashCode() method: Ensure the hashCode() method is well-distributed. A good hash code should produce a wide range of hash values and avoid clustering of values that are similar.
+```java
+@Override
+public int hashCode() {
+    return Objects.hash(name, age, address);  // Combine relevant fields in a way that distributes hash codes evenly.
+}
+```
+2. Use a prime number multiplier: When overriding hashCode(), use a prime number (like 31) in the calculation to help spread out the hash values more evenly.
+```java
+@Override
+public int hashCode() {
+    // Use a prime number multiplier to spread out hash codes
+    int result = 17;
+    result = 31 * result + (name == null ? 0 : name.hashCode());
+    result = 31 * result + (age == null ? 0 : age.hashCode());
+    return result;
+}
+```
+3. Ensure a uniform distribution: Ensure the hash code is as random as possible for different objects, reducing the chances of collisions.
+4. Set an appropriate initial capacity: If you know the approximate number of entries, set a higher initial capacity to reduce the frequency of resizing and minimize collisions.
+```java
+Map<K, V> map = new HashMap<>(initialCapacity);
+```
+5. Adjust the load factor: Set the load factor to a value that balances between time efficiency and memory usage. The default of 0.75 works well in most cases, but adjusting it might help in specific use cases.
+6.Avoid using predictable patterns for keys: If your keys follow certain predictable patterns (like sequential numbers), you may need to modify how hashCode() is calculated to prevent poor distribution.
 
 ##### When to Use HashMap?
 + When you need fast lookups (O(1) average time complexity).
