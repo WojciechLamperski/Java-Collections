@@ -225,7 +225,7 @@ static final class Entry<K,V> implements Map.Entry<K,V> {
 ```
 When you put() a new entry, the tree uses binary search to find the correct spot based on the key's order (via Comparable or a Comparator). After insertion, the Red-Black Tree rebalances itself using rotations and recoloring, to keep the tree roughly balanced. Lookup (get()), insert (put()), and remove (remove()) all have O(log n) time complexity thanks to this balance.
 
-Red-Black Trees are very efficient. They have fast storage and retrieval of ordered information. <br>
+Red-Black Trees are very efficient. They have fast storage and retrieval of ordered information. They take a number and split the remaining numbers into two groups - numbers greater than this number and lesser than root number. The root is always black. Red numbers are those whose both children are black, and black numbers are those that have no children. Each following number has numbers flowing from it based on the same principle that the root number has, with proximity of the numbers being the determining factor on which number gets to be a leaf (children) of which parent. <br>
 ![image](https://github.com/user-attachments/assets/2dda5929-9a78-4a17-93eb-2f906e70eac7)
 
 ### ConcurrentHashMap
