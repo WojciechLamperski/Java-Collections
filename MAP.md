@@ -201,9 +201,19 @@ Methods: LinkedHashMap inherits most of its methods directly from Map and HashMa
 
 ### TreeMap
 
+TreeMap is a class that implements the NavigableMap interface and stores key-value pairs in sorted order according to the natural ordering of the keys, or by a Comparator provided at map creation time.
 
+Things to know:
+
++ Sorting: Maintains keys in ascending order
++ Underlying Data Structure: Red-Black Tree (self-balancing binary search tree)
++ Allows nulls?:
++ Null keys ❌ not allowed (throws NullPointerException)
++ Null values ✅ allowed
 
 ### ConcurrentHashMap
 
+Things to know:
++ does not allow null keys or values (to avoid ambiguity in concurrent operations)
 
-### More classes will be added if needed... Just know that there are similiar to Sets, with classes like TreeMap, EnumMap etc.
+### More classes will be added if needed.
