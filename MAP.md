@@ -1,4 +1,4 @@
-## Hierarchy of Map
+![image](https://github.com/user-attachments/assets/2dda5929-9a78-4a17-93eb-2f906e70eac7)![image](https://github.com/user-attachments/assets/c31b1696-8ea1-4295-bb71-bb8af23e88e7)## Hierarchy of Map
 ```mathematica
     Map<K, V> // Root Interface
     ▲
@@ -225,7 +225,7 @@ static final class Entry<K,V> implements Map.Entry<K,V> {
 ```
 When you put() a new entry, the tree uses binary search to find the correct spot based on the key's order (via Comparable or a Comparator). After insertion, the Red-Black Tree rebalances itself using rotations and recoloring, to keep the tree roughly balanced. Lookup (get()), insert (put()), and remove (remove()) all have O(log n) time complexity thanks to this balance.
 
-
+Red-Black Trees are very efficient. They have fast storage and retrieval of ordered information. (Check it out here)[https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiDcURCDCg5x70UUJ7d7nvifHrbB88hVNC5ef8et4T-slf_bia&s]
 
 ### ConcurrentHashMap
 
