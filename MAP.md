@@ -211,6 +211,22 @@ Things to know:
 + Null keys ❌ not allowed (throws NullPointerException)
 + Null values ✅ allowed
 
+More about Red-Black Tree:
+TreeMap is implemented using a Red-Black Tree, which is a type of self-balancing binary search tree. And just like a linked list is made of nodes pointing to the next/previous element, a TreeMap internally maintains a collection of nodes, each representing a key-value pair with left/right/parent references. Each node is an instance of a nested class called TreeMap.Entry<K, V>, and it looks something like this:
+```java
+static final class Entry<K,V> implements Map.Entry<K,V> {
+    K key;
+    V value;
+    Entry<K,V> left;
+    Entry<K,V> right;
+    Entry<K,V> parent;
+    boolean color; // true = RED, false = BLACK
+}
+```
+When you put() a new entry, the tree uses binary search to find the correct spot based on the key's order (via Comparable or a Comparator). After insertion, the Red-Black Tree rebalances itself using rotations and recoloring, to keep the tree roughly balanced. Lookup (get()), insert (put()), and remove (remove()) all have O(log n) time complexity thanks to this balance.
+
+
+
 ### ConcurrentHashMap
 
 Things to know:
