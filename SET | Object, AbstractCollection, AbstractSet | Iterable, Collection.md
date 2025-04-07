@@ -319,7 +319,7 @@ AbstractCollection
 - When it comes to implementations, yes HashSet uses Set. But there is one more layer that isn't related to implementations. You see HashSet essentially uses HashMap internally, but doesn't implement it per se. HashSet doesn't directly store elements. Instead, it uses a HashMap where:
 * The elements are stored as keys in the HashMap.
 * A constant dummy object (PRESENT) is used as the value.
-* Why use HashMap? Because HashMap already ensures unique keys using hashCode() and equals().
+* Why use HashMap? Because HashMap already ensures unique keys using hashCode() and equals(). So i add a value "cat" to my HashSet. HashSet assignes "cat" as a key to HashMap and this key has generic value PRESENT assigned to it as a key-value pair. Since HashMap doesn't allow for duplicate keys, there will be no duplicates and value is ignored and doesn't matter.
 * Fast operations (O(1)) due to hashing. ✅
 * No ordering is preserved. ❌
 * HashSet internally does something like this:
