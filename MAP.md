@@ -195,6 +195,10 @@ It maintains balance (like a self-balancing binary search tree) to avoid worst-c
 + Back to Few: If shrunk, detreeify into linked list
 
 The bucket number in a HashMap is directly tied to the hash code of the key, and it is calculated by applying the modulo operation on the hash code with the size of the internal bucket array (table.length). Hash collisions can occur when two distinct keys produce the same bucket number. In this case, the HashMap stores those entries in a linked list (or red-black tree if there are many collisions). You cannot directly modify the bucket number calculation in a HashMap. However, you can control the resulting bucket index by providing a custom hashCode() implementation for your custom key class.
+<br><br>
+Even though the keys are unique, collisions can still occur in a HashMap, particularly when you have a large number of entries like a million. This is because the bucket index is derived from the hash code of the key, and there are only a finite number of buckets available in the HashMap (determined by the size of the internal table, often a power of 2). Therefore, different keys may end up being hashed to the same bucket index, resulting in a hash collision.
+
+##### How to prevent hash collision?
 
 ##### When to Use HashMap?
 + When you need fast lookups (O(1) average time complexity).
