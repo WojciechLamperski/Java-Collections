@@ -197,13 +197,13 @@ Key Features:
 + Resizable Array: Internally, ArrayDeque uses a resizable array to store the elements. **Unlike ArrayList, which resizes when the array exceeds its capacity, ArrayDeque resizes in a way that ensures elements can be added and removed efficiently from both ends.**
 + No Capacity Limit: ArrayDeque does not have a fixed capacity. It automatically grows when needed (i.e., when the array is full), but unlike LinkedList, it does not have the overhead of node-based pointers.
 + Non-Thread-Safe: Unlike some other queue classes like LinkedBlockingQueue, ArrayDeque is not thread-safe by default. This means that if multiple threads are modifying it, synchronization must be handled externally.
-+ Faster than LinkedList: ArrayDeque generally performs better than LinkedList for most operations (especially for stack and queue operations). This is because ArrayDeque uses an array internally, which avoids the overhead of managing nodes in a doubly linked list.
++ Faster than LinkedList: **ArrayDeque generally performs better than LinkedList for most operations (especially for stack and queue operations)**. This is because ArrayDeque uses an array internally, which avoids the overhead of managing nodes in a doubly linked list.
 + No Null Elements: ArrayDeque does not allow null elements, unlike some other collections, which can store null values. This helps prevent ambiguity when performing operations on the deque.
 
 How It Works Behind the Scenes:
-+ ArrayDeque uses an array to hold its elements. It maintains two pointers or indices (head and tail) that indicate where the next element will be added or removed. The main goal of the ArrayDeque is to maintain constant-time operations (O(1)) for adding or removing elements at either end.
-+ When elements are added to the front or back of the deque, the array dynamically resizes if necessary. The resizing happens in such a way that it provides amortized constant time for these operations.
-+ If the deque becomes full, ArrayDeque doubles its array size. Similarly, when the size of the deque decreases, the underlying array may shrink to optimize memory usage.
++ ArrayDeque uses an array to hold its elements. It maintains two pointers or indices (head and tail) that indicate where the next element will be added or removed. **The main goal of the ArrayDeque is to maintain constant-time operations (O(1)) for adding or removing elements at either end.**
++ When elements are added to the front or back of the deque, the array dynamically resizes if necessary. **The resizing happens in such a way that it provides amortized constant time for these operations.**
++ **If the deque becomes full, ArrayDeque doubles its array size.** Similarly, **when the size of the deque decreases, the underlying array may shrink to optimize memory usage.**
 + To keep track of the elements in the array, ArrayDeque wraps around its array in a circular fashion. This means when elements are removed or added beyond the boundaries of the array (either at the start or the end), the array is conceptually "wrapped" around to the other side.
 
 Performance Considerations:
