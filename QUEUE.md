@@ -19,6 +19,7 @@ Queue<E> // Root Interface
 ├── PriorityQueue<E>   (implements Queue, unbounded, uses heap to order elements)  
 ├── ConcurrentLinkedQueue<E>   (implements Queue, non-blocking, uses linked nodes for thread safety)  
 ```
+## Interfaces and Abstract Classes
 
 ### Queue
 The `Queue<E>` interface in Java is part of the java.util package and extends the Collection<E> interface. It represents a FIFO (First-In-First-Out) data structure, where elements are added at the rear and removed from the front.
@@ -96,3 +97,8 @@ tail = (tail + 1) % elements.length;
 ```
 
 #### Another one is an ArrayList, but it is covered in more detail in a file dedicated to List specifically.
+
+## Classes that implement and extend above mentioned Interfaces and Classes
+
+### PriorityQueue
+PriorityQueue in Java is a class that implements the Queue interface and provides an ordered collection where the elements are ordered according to their natural ordering or by a Comparator provided at the time of queue construction. Unlike a regular queue, where elements are processed in the order they were inserted (FIFO), a PriorityQueue orders its elements based on priority, with the highest (or lowest) priority element being served first.
