@@ -147,4 +147,5 @@ When to Use PriorityQueue:
 + PriorityQueue is ideal when you need to process elements in a specific order based on priority, and the order can change dynamically (i.e., you may insert and remove elements with varying priorities).
 + Use cases: Task scheduling, simulations, Dijkstra's algorithm (shortest path), or anywhere that a priority-based queue is required.
 + Not ideal for: Simple FIFO queue processing, where the order of elements is based strictly on arrival time.
+
 In summary, PriorityQueue offers a way to process elements based on priority, with efficient insertion and removal due to its use of a binary heap. However, it’s not thread-safe, and it doesn’t guarantee any particular order of elements with the same priority unless specified by a Comparator.
