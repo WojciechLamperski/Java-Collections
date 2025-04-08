@@ -100,6 +100,8 @@ tail = (tail + 1) % elements.length;
 
 #### Another one is an ArrayList, but it is covered in more detail in a file dedicated to List specifically.
 
+-------------------------------
+
 ## Classes that implement and extend above mentioned Interfaces and Classes
 
 ### PriorityQueue
