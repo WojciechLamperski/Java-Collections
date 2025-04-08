@@ -190,6 +190,7 @@ Value:    2   3   4   5   10  8
 ```
 
 ### ArrayDeque
+##### ⏰ ArrayDeque offers O(1) time complexity for insertion and removal at both ends, making it generally faster than LinkedList for deque operations due to better cache locality and no node allocation overhead. Compared to ArrayList, it performs similarly in array resizing but is optimized for queue-like access patterns. Overall, it is one of the fastest choices for stack or queue use cases where thread safety is not required.
 
 ArrayDeque is a class that implements the Deque interface (a type of queue that allows insertion and removal from both ends). It is a dynamic array-based implementation of a double-ended queue (deque), meaning it provides the functionality of adding and removing elements from both the front and back of the queue efficiently. It's a dynamic array-based deque implementation that provides fast insertion and removal operations at both ends. It automatically resizes its internal array as needed and is highly efficient for stack and queue operations. It does not allow null elements and is not thread-safe by default. It is often a better choice than LinkedList for most use cases because of its simpler, array-based structure, which results in less overhead.
 
