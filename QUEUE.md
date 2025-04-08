@@ -130,6 +130,11 @@ It introduces blocking methods like:
 + take() – waits if necessary until an element becomes available.
 + offer(E e, long timeout, TimeUnit unit) and poll(long timeout, TimeUnit unit) – timed versions of offer and poll.
 
+BlockingQueue is specifically designed for multithreaded environments. The term "blocking" refers to how the queue handles concurrent access by multiple threads:
++ If a thread tries to take() an element from an empty queue, it will block (wait) until another thread inserts an element.
++ If a thread tries to put() an element into a full queue (in bounded queues like ArrayBlockingQueue), it will block until space becomes available.
++ This makes BlockingQueue very useful for producer-consumer scenarios, where threads need to safely hand off work or data to each other without manually managing synchronization or locks.
+
 -------------------------------
 
 ## Classes that implement and extend above mentioned Interfaces and Classes
@@ -230,3 +235,10 @@ Use Cases:
 `ArrayBlockingQueue<E>` is a bounded, blocking queue backed by a fixed-size array, meaning its capacity is set at creation and cannot grow. It follows FIFO (first-in-first-out) order and is thread-safe thanks to internal locks used for coordinating access between producers and consumers.
 
 Because it’s array-backed, it offers predictable performance and memory use, with constant-time offer(), poll(), peek(), and size() operations under most conditions. However, unlike LinkedBlockingQueue, it does not allow for dynamic resizing, making it ideal for situations where a known, fixed capacity is desired for resource control.
+
+### LinkedBlockingQueue
+
+LinkedBlockingQueue is a thread-safe, optionally bounded implementation of the BlockingQueue interface that uses a linked-node structure internally.
++ It can be bounded (with a specified capacity) or unbounded (defaulting to Integer.MAX_VALUE).
++ Compared to ArrayBlockingQueue, it generally provides better throughput under high concurrency because it uses separate locks for put and take operations (whereas ArrayBlockingQueue uses a single lock).
++ Internally, it uses a linked list of nodes, which allows dynamic memory usage without needing to resize arrays.
