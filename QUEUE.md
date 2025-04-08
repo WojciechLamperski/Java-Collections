@@ -86,6 +86,8 @@ Methods Implemented from Queue
 + poll(): This method is implemented in AbstractQueue to retrieve and remove the head of the queue, but it allows returning null if the queue is empty (instead of throwing an exception). Default Implementation: It is abstract in AbstractQueue, so concrete classes must implement it.
 + peek(): This method retrieves, but does not remove, the head of the queue. If the queue is empty, it returns null. Default Implementation: It is abstract in AbstractQueue, so concrete classes must implement it.
 + element(): This method retrieves (but does not remove) the head of the queue, throwing a NoSuchElementException if the queue is empty. Default Implementation: return peek(); (calls peek() method).
+
+AbstractQueue doesn't introduce any unique methods
  
 ### Deque
 
