@@ -67,6 +67,9 @@ Use Cases of Queue
      * PriorityBlockingQueue (like PriorityQueue but thread-safe)
      * DelayQueue (elements expire after a delay)
    + Best for multi-threaded producer-consumer models. However, blocking operations can introduce thread contention.
+
+### AbstractQueue
+
  
 ### Deque
 
@@ -106,7 +109,7 @@ tail = (tail + 1) % elements.length;
 
 ### PriorityQueue
 
-PriorityQueue in Java is a class that implements the Queue interface and provides an ordered collection where the elements are ordered according to their natural ordering or by a Comparator provided at the time of queue construction. Unlike a regular queue, where elements are processed in the order they were inserted (FIFO), a PriorityQueue orders its elements based on priority, with the highest (or lowest) priority element being served first. It implements Queue, but doesn't extend any class.
+PriorityQueue in Java is a class that implements the Queue interface and provides an ordered collection where the elements are ordered according to their natural ordering or by a Comparator provided at the time of queue construction. Unlike a regular queue, where elements are processed in the order they were inserted (FIFO), a PriorityQueue orders its elements based on priority, with the highest (or lowest) priority element being served first. It implements Queue, but doesn't extend any class. It implements Queue and extends AbstractQueue.
 
 PriorityQueue uses a binary heap (specifically a min-heap by default) to store its elements. A binary heap is a complete binary tree, where each node has a higher (or lower, depending on the heap type) priority than its children. Here are the key points on how it works:
 + Heap Structure: The elements are stored in an array-backed binary heap, where the root element is always the one with the highest priority (for a min-heap) or lowest priority (for a max-heap). The heap property is maintained, meaning the parent node is always less than (in a min-heap) or greater than (in a max-heap) its child nodes.
