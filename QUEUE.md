@@ -121,4 +121,30 @@ Key Characteristics
 + Not Thread-Safe: PriorityQueue is not synchronized, meaning it is not safe to use concurrently across multiple threads unless external synchronization is provided.
 + Custom Comparators: It allows custom ordering of elements through the Comparator interface, giving flexibility in defining the queue’s priority logic.
 
+Example usage:
+```java
+import java.util.PriorityQueue;
 
+public class Main {
+    public static void main(String[] args) {
+        // Default PriorityQueue (min-heap)
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+
+        pq.offer(5);
+        pq.offer(3);
+        pq.offer(8);
+        pq.offer(1);
+
+        while (!pq.isEmpty()) {
+            System.out.println(pq.poll()); // This will print: 1, 3, 5, 8
+        }
+    }
+}
+```
+In the example above, the PriorityQueue automatically orders the elements so that the smallest element (according to the natural ordering of integers) is always at the front. When elements are polled from the queue, they come out in ascending order.
+
+When to Use PriorityQueue:
++ PriorityQueue is ideal when you need to process elements in a specific order based on priority, and the order can change dynamically (i.e., you may insert and remove elements with varying priorities).
++ Use cases: Task scheduling, simulations, Dijkstra's algorithm (shortest path), or anywhere that a priority-based queue is required.
++ Not ideal for: Simple FIFO queue processing, where the order of elements is based strictly on arrival time.
+In summary, PriorityQueue offers a way to process elements based on priority, with efficient insertion and removal due to its use of a binary heap. However, it’s not thread-safe, and it doesn’t guarantee any particular order of elements with the same priority unless specified by a Comparator.
