@@ -16,8 +16,8 @@ Queue<E> // Root Interface
 │    ├── SynchronousQueue<E>   (implements BlockingQueue, no internal capacity, each insert waits for remove)  
 │    ├── LinkedTransferQueue<E>   (implements BlockingQueue & TransferQueue, highly concurrent, linked nodes)  
 │  
-├── PriorityQueue<E>   (implements Queue, unbounded, uses heap to order elements)  
-├── ConcurrentLinkedQueue<E>   (implements Queue, non-blocking, uses linked nodes for thread safety)  
+├── PriorityQueue<E>   (implements Queue, extends AbstractQueue, unbounded, uses heap to order elements)  
+├── ConcurrentLinkedQueue<E>   (implements Queue, extends AbstractQueue non-blocking, uses linked nodes for thread safety)  
 ```
 -------------------------------
 
@@ -153,4 +153,17 @@ In summary, PriorityQueue offers a way to process elements based on priority, wi
 ##### What is a binary heap.
 It's kina (in a very broad sense) similar to Red-Black Tree, because it gets represented as a tree. But the only relation between parent and children elements of this tree is that the parent of two children (btw tree gets filled from left to right, and there can be no right-side child without left-side one, but there can be a single left-side child) has to be smaller (in case of min heaps) or equal to its child, one, and the oter, (but not both at the same time) or larger or equal (in case of max-heaps). **The heap sacrifices full order (like sorting) in exchange for fast access to the most important element according to some priority**. The heap isn't orded outside of this basic rule so if 1 is the smallest number its children can be 2 and 270, heap serves very little value outside of getting the most prioritized item, and it will always give you the most prioritize item as it employes self balancing to move the smallest / largest item to the top. 
 
-One thing to know about binary heap that unlike RBT, it's represented as an array.
+One thing to know about binary heap that unlike RBT, it's represented as an array. Take a look at the following Tree representation:
+```mardown
+        2
+       / \
+      3   4
+     / \   \
+    5   10  8
+
+```
+And now look at how it is actually stored in array form:
+```makefile
+Index:    0   1   2   3   4   5
+Value:    2   3   4   5   10  8
+```
