@@ -52,6 +52,13 @@ It extends the Queue<E> interface, but unlike a regular queue (which is FIFO: Fi
 + A queue → add at end, remove from front (offerLast(), pollFirst())
 + A stack → add/remove from the front (push(), pop())
 
+A Deque (pronounced "deck") is a queue where you can insert and remove elements from both the front (head) and the rear (tail) of the queue. This is different from a regular queue (FIFO), where elements can only be added at the end and removed from the front.
+
+In a Deque:
+- Insertions can happen at both ends: addFirst() for the front and addLast() for the rear.
+- Removals can happen at both ends: removeFirst() for the front and removeLast() for the rear.
+- Peek operations: You can also peek at the first or last element without removing it, with peekFirst() and peekLast().
+
 There are two popular implementations of Deque in Java:
 
 #### ArrayDeque
