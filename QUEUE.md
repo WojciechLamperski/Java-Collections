@@ -215,3 +215,12 @@ Performance Considerations:
 Use Cases:
 + Efficient Queue Operations: If you need a queue that allows for adding and removing elements from both ends efficiently, ArrayDeque is a great choice. It is faster than LinkedList and more flexible than a simple array.
 + Stack and Queue Operations: You can use ArrayDeque as both a stack (LIFO) and a queue (FIFO). Since ArrayDeque allows constant-time operations at both ends, it's a good choice for these types of data structures.
+
+### BlockingQueue
+
+The `BlockingQueue<E>` interface is part of the java.util.concurrent package and extends the `Queue<E>` interface. Its key feature is that it supports operations that wait for the queue to become non-empty when retrieving elements and for space to become available when storing elements. This makes it especially useful in producer-consumer scenarios, where one or more threads produce data and others consume it.
+
+It introduces blocking methods like:
++ put(E e) – waits if necessary for space to become available.
++ take() – waits if necessary until an element becomes available.
++ offer(E e, long timeout, TimeUnit unit) and poll(long timeout, TimeUnit unit) – timed versions of offer and poll.
