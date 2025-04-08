@@ -105,4 +105,22 @@ tail = (tail + 1) % elements.length;
 ## Classes that implement and extend above mentioned Interfaces and Classes
 
 ### PriorityQueue
-PriorityQueue in Java is a class that implements the Queue interface and provides an ordered collection where the elements are ordered according to their natural ordering or by a Comparator provided at the time of queue construction. Unlike a regular queue, where elements are processed in the order they were inserted (FIFO), a PriorityQueue orders its elements based on priority, with the highest (or lowest) priority element being served first.
+
+PriorityQueue in Java is a class that implements the Queue interface and provides an ordered collection where the elements are ordered according to their natural ordering or by a Comparator provided at the time of queue construction. Unlike a regular queue, where elements are processed in the order they were inserted (FIFO), a PriorityQueue orders its elements based on priority, with the highest (or lowest) priority element being served first. It implements Queue, but doesn't extend any class.
+
+PriorityQueue uses a binary heap (specifically a min-heap by default) to store its elements. A binary heap is a complete binary tree, where each node has a higher (or lower, depending on the heap type) priority than its children. Here are the key points on how it works:
++ Heap Structure:
+ - The elements are stored in an array-backed binary heap, where the root element is always the one with the highest priority (for a min-heap) or lowest priority (for a max-heap).
+ - The heap property is maintained, meaning the parent node is always less than (in a min-heap) or greater than (in a max-heap) its child nodes.
++ Insertion (offer):
+ - When a new element is added (offer(E e)), it is initially inserted at the end of the heap array.
+ - After insertion, the heap property may be violated, so the element "bubbles up" (via the siftUp process) to restore the heap order. This operation is O(log n), where n is the number of elements in the queue.
++ Removal (poll):
+ - The highest priority element (the root of the heap) is removed first (poll()).
+ - To remove the root, the last element in the heap replaces it, and then the heap property is restored by "bubbling down" (via the siftDown process). This operation is also O(log n).
++ Peek:
+ - The peek() method simply returns the root element (highest priority element), without removing it. It’s an O(1) operation.
++ Ordering:
+ - If no Comparator is provided when the PriorityQueue is created, the queue assumes that the elements are comparable (i.e., they implement Comparable<E>). This means elements are ordered according to their natural ordering.
+ - If a Comparator is provided, it is used to compare elements when ordering them in the queue.
+
