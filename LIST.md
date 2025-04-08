@@ -139,19 +139,11 @@ When to avoid LinkedList:
 - Random access: If you need fast access to elements at specific indices, LinkedList is not ideal because accessing an element takes O(n) time.
 - Memory overhead: Each element in LinkedList requires extra memory for storing references to the next and previous elements.
 
-##### What is a Deque?
-A Deque (pronounced "deck") stands for "Double-Ended Queue." It is a queue where you can insert and remove elements from both the front (head) and the rear (tail) of the queue. This is different from a regular queue (FIFO), where elements can only be added at the end and removed from the front.
-
-In a Deque:
-- Insertions can happen at both ends: addFirst() for the front and addLast() for the rear.
-- Removals can happen at both ends: removeFirst() for the front and removeLast() for the rear.
-- Peek operations: You can also peek at the first or last element without removing it, with peekFirst() and peekLast().
-
 LinkedList implements all these methods of Deque, and because it is a doubly linked list, it can efficiently perform these operations at both ends.
 
-The main benefit of a Deque is that it provides efficient access to both ends of the collection. LinkedList, being a doubly linked list, allows both the front and the rear to be modified efficiently in constant time, O(1).
+The main benefit of a Deque is that it provides methods (customly implemented by LinkedList) for efficient access to both ends of the collection. This combined with extending AbstractSequentialList gives us support for none-array collections, and together with extending List gives us methods (to be implemented) for well Lists. So we can create a non-array based collection accessible for both ends & thanks to list interface we have preserved order, thus a doubly linked list.
 
-If you need to add or remove elements from only one end of the collection, then a regular Queue or Stack might be better. However, if you need operations at both ends, LinkedList is a great choice because of its flexibility and efficiency.
+LinkedList, being a doubly linked list, allows both the front and the rear to be modified efficiently in constant time, O(1). If you need to add or remove elements from only one end of the collection, then a regular Queue or Stack might be better. However, if you need operations at both ends, LinkedList is a great choice because of its flexibility and efficiency.
 
 ##### Use Cases for LinkedList
 + Frequent Insertions and Removals at Both Ends: LinkedList is ideal when you frequently need to add or remove elements from the beginning (head) or end (tail) of the list. These operations are done in constant time O(1) since only the references (pointers) need to be updated.
