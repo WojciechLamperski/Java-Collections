@@ -224,3 +224,9 @@ Performance Considerations:
 Use Cases:
 + Efficient Queue Operations: If you need a queue that allows for adding and removing elements from both ends efficiently, ArrayDeque is a great choice. It is faster than LinkedList and more flexible than a simple array.
 + Stack and Queue Operations: You can use ArrayDeque as both a stack (LIFO) and a queue (FIFO). Since ArrayDeque allows constant-time operations at both ends, it's a good choice for these types of data structures.
+
+### ArrayBlockingQueue
+
+`ArrayBlockingQueue<E>` is a bounded, blocking queue backed by a fixed-size array, meaning its capacity is set at creation and cannot grow. It follows FIFO (first-in-first-out) order and is thread-safe thanks to internal locks used for coordinating access between producers and consumers.
+
+Because it’s array-backed, it offers predictable performance and memory use, with constant-time offer(), poll(), peek(), and size() operations under most conditions. However, unlike LinkedBlockingQueue, it does not allow for dynamic resizing, making it ideal for situations where a known, fixed capacity is desired for resource control.
