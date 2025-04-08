@@ -143,7 +143,7 @@ public class Main {
 ```
 In the example above, the PriorityQueue automatically orders the elements so that the smallest element (according to the natural ordering of integers) is always at the front. When elements are polled from the queue, they come out in ascending order.
 
-When to Use PriorityQueue:
+When to Use PriorityQueue?
 + PriorityQueue is ideal when you need to process elements in a specific order based on priority, and the order can change dynamically (i.e., you may insert and remove elements with varying priorities).
 + Use cases: Task scheduling, simulations, Dijkstra's algorithm (shortest path), or anywhere that a priority-based queue is required.
 + Not ideal for: Simple FIFO queue processing, where the order of elements is based strictly on arrival time.
