@@ -149,3 +149,8 @@ When to Use PriorityQueue?
 + Not ideal for: Simple FIFO queue processing, where the order of elements is based strictly on arrival time.
 
 In summary, PriorityQueue offers a way to process elements based on priority, with efficient insertion and removal due to its use of a binary heap. However, it’s not thread-safe, and it doesn’t guarantee any particular order of elements with the same priority unless specified by a Comparator.
+
+##### What is a binary heap.
+It's kina (in a very broad sense) similar to Red-Black Tree, because it gets represented as a tree. But the only relation between parent and children elements of this tree is that the parent of two children (btw tree gets filled from left to right, and there can be no right-side child without left-side one, but there can be a single left-side child) has to be smaller (in case of min heaps) or equal to its child, one, and the oter, (but not both at the same time) or larger or equal (in case of max-heaps). **The heap sacrifices full order (like sorting) in exchange for fast access to the most important element according to some priority**. The heap isn't orded outside of this basic rule so if 1 is the smallest number its children can be 2 and 270, heap serves very little value outside of getting the most prioritized item, and it will always give you the most prioritize item as it employes self balancing to move the smallest / largest item to the top. 
+
+One thing to know about binary heap that unlike RBT, it's represented as an array.
