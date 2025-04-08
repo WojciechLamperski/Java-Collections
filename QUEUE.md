@@ -46,6 +46,13 @@ Use Cases of Queue
 - ✔ Breadth-First Search (BFS) – Queues help traverse trees and graphs.
 - ✔ Message Queues – Background processing and messaging systems (e.g., Kafka).
 
+##### Outside of what is inheritede from Itereable and Collection Interfaces, Queue introduces the following methods:
+- offer(E e): Adds an element, returning false if the queue is full (non-blocking).
+- poll(): Retrieves and removes the head of the queue, or returns null if empty.
+- peek(): Retrieves, but does not remove, the head of the queue, or returns null if empty.
+- remove(): Retrieves and removes the head of the queue, throwing an exception if empty.
+- element(): Retrieves, but does not remove, the head of the queue, throwing an exception if empty.
+
 ##### Queue Implementations:
 
 - **`LinkedList<E>`** - Implements Queue<E> and Deque<E>, doubly linked list-based. Allows null elements. Suitable for simple FIFO behavior.
