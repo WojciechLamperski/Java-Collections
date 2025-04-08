@@ -1,4 +1,24 @@
-
+```mathematica
+Queue<E> // Root Interface  
+▲  
+├── Deque<E> // Extends Queue, allows insertion and removal at both ends  
+│    ▲  
+│    ├── ArrayDeque<E>   (implements Deque, resizable array, faster than Stack & LinkedList for deque operations)  
+│    ├── LinkedList<E>   (implements List & Deque, extends AbstractSequentialList, uses doubly linked list)  
+│    ├── ConcurrentLinkedDeque<E>   (implements Deque, thread-safe, non-blocking, uses linked nodes)  
+│  
+├── BlockingQueue<E> // Extends Queue, supports blocking operations for producers/consumers  
+│    ▲  
+│    ├── LinkedBlockingQueue<E>   (implements BlockingQueue, optionally bounded, uses linked nodes)  
+│    ├── ArrayBlockingQueue<E>   (implements BlockingQueue, bounded, backed by an array)  
+│    ├── PriorityBlockingQueue<E>   (implements BlockingQueue, unbounded, uses heap for ordering)  
+│    ├── DelayQueue<E>   (implements BlockingQueue, unbounded, holds elements until delay expires)  
+│    ├── SynchronousQueue<E>   (implements BlockingQueue, no internal capacity, each insert waits for remove)  
+│    ├── LinkedTransferQueue<E>   (implements BlockingQueue & TransferQueue, highly concurrent, linked nodes)  
+│  
+├── PriorityQueue<E>   (implements Queue, unbounded, uses heap to order elements)  
+├── ConcurrentLinkedQueue<E>   (implements Queue, non-blocking, uses linked nodes for thread safety)  
+```
 
 ### Queue
 The `Queue<E>` interface in Java is part of the java.util package and extends the Collection<E> interface. It represents a FIFO (First-In-First-Out) data structure, where elements are added at the rear and removed from the front.
@@ -47,7 +67,7 @@ Use Cases of Queue
  
 ### Deque
 
-Deque stands for "double-ended queue" — a linear collection that allows insertion and removal from both ends, i.e., head and tail.
+Deque is an interface it's name stands for "double-ended queue" — a linear collection that allows insertion and removal from both ends, i.e., head and tail.
 It extends the Queue<E> interface, but unlike a regular queue (which is FIFO: First-In-First-Out), a deque can behave like:
 + A queue → add at end, remove from front (offerLast(), pollFirst())
 + A stack → add/remove from the front (push(), pop())
