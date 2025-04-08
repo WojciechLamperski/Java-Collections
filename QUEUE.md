@@ -191,7 +191,7 @@ Value:    2   3   4   5   10  8
 
 ### ArrayDeque
 
-ArrayDeque is a class that implements the Deque interface (a type of queue that allows insertion and removal from both ends). It is a dynamic array-based implementation of a double-ended queue (deque), meaning it provides the functionality of adding and removing elements from both the front and back of the queue efficiently.
+ArrayDeque is a class that implements the Deque interface (a type of queue that allows insertion and removal from both ends). It is a dynamic array-based implementation of a double-ended queue (deque), meaning it provides the functionality of adding and removing elements from both the front and back of the queue efficiently. It's a dynamic array-based deque implementation that provides fast insertion and removal operations at both ends. It automatically resizes its internal array as needed and is highly efficient for stack and queue operations. It does not allow null elements and is not thread-safe by default. It is often a better choice than LinkedList for most use cases because of its simpler, array-based structure, which results in less overhead.
 
 Key Features:
 + Resizable Array: Internally, ArrayDeque uses a resizable array to store the elements. Unlike ArrayList, which resizes when the array exceeds its capacity, ArrayDeque resizes in a way that ensures elements can be added and removed efficiently from both ends.
@@ -205,3 +205,12 @@ How It Works Behind the Scenes:
 + When elements are added to the front or back of the deque, the array dynamically resizes if necessary. The resizing happens in such a way that it provides amortized constant time for these operations.
 + If the deque becomes full, ArrayDeque doubles its array size. Similarly, when the size of the deque decreases, the underlying array may shrink to optimize memory usage.
 + To keep track of the elements in the array, ArrayDeque wraps around its array in a circular fashion. This means when elements are removed or added beyond the boundaries of the array (either at the start or the end), the array is conceptually "wrapped" around to the other side.
+
+Performance Considerations:
++ Time Complexity: Most operations like adding or removing elements at either end (addFirst(), addLast(), removeFirst(), removeLast()) are O(1), which makes ArrayDeque very efficient. Resizing the underlying array (when it becomes full or shrinks) happens infrequently and thus has an amortized O(1) time complexity.
++ Memory Usage: ArrayDeque uses an array, so it has a constant memory overhead of storing the elements. When resizing, the time complexity is O(n) for the resize operation, but this happens infrequently.
++ Thread Safety: ArrayDeque is not synchronized by default. If thread-safety is needed, external synchronization or a different thread-safe collection (like ConcurrentLinkedDeque) should be used.
+
+Use Cases:
++ Efficient Queue Operations: If you need a queue that allows for adding and removing elements from both ends efficiently, ArrayDeque is a great choice. It is faster than LinkedList and more flexible than a simple array.
++ Stack and Queue Operations: You can use ArrayDeque as both a stack (LIFO) and a queue (FIFO). Since ArrayDeque allows constant-time operations at both ends, it's a good choice for these types of data structures.
