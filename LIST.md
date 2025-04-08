@@ -1,5 +1,5 @@
 ## List Intreface and its classes:
-```java
+```mathematica
 List<E> // Root Interface  
 ▲  
 ├── AbstractList<E>   // (extends AbstractCollection, provides skeletal implementation of List)  
