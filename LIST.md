@@ -58,7 +58,7 @@ It focuses on lists (like inked lists or queues) where elements are not stored i
 The concept of sequentiality in AbstractSequentialList refers to how the list is structured and accessed in a linear fashion, typically from one element to the next, in contrast to a structure that allows for random access (like an array or ArrayList). Sequentially-accessed lists (like LinkedList) are typically slower for operations like random access (i.e., accessing an element at a specific index) since you need to traverse the list element by element. However, operations like insertions and deletions in the middle of the list are faster in sequential structures because they don't require shifting elements (as in an ArrayList). Instead, only the links between elements need to be updated.
 
 ### ArrayList
-#### ⏰ ArrayList offers fast O(1) access and is efficient for adding at the end, but insertions/removals elsewhere are slower (O(n)), making it ideal for read-heavy use cases. It's faster than LinkedList and CopyOnWriteArrayList for random access and appending to the end, making it best for read-heavy and index-based operations.
+##### ⏰ ArrayList offers fast O(1) access and is efficient for adding at the end, but insertions/removals elsewhere are slower (O(n)), making it ideal for read-heavy use cases. It's faster than LinkedList and CopyOnWriteArrayList for random access and appending to the end, making it best for read-heavy and index-based operations.
 
 ArrayList<E> is a resizable array implementation of the List interface. It provides fast random access, dynamic resizing (like all Lists btw.), and order preservation, making it one of the most commonly used data structures in Java.
 
@@ -101,7 +101,7 @@ In Java, arrays are a fundamental part of the language and can be a bit confusin
 
 
 ### CopyOnWriteArrayList
-#### ⏰ CopyOnWriteArrayList is thread-safe and great for frequent reads, but slow for writes (O(n)) due to full array copying on modification. It's slower than both ArrayList, and LinkedList for writes due to full array copying, but safer and often faster in concurrent, read-heavy situations.
+##### ⏰ CopyOnWriteArrayList is thread-safe and great for frequent reads, but slow for writes (O(n)) due to full array copying on modification. It's slower than both ArrayList, and LinkedList for writes due to full array copying, but safer and often faster in concurrent, read-heavy situations.
 
 It's a thread-safe variant of ArrayList in Java. It is part of the java.util.concurrent package, which provides classes designed for concurrent programming in multi-threaded environments. It is designed for use cases where reads are frequent, and writes (additions, deletions, or updates) are infrequent, making it suitable for scenarios where there is a need for high concurrency and thread safety without using synchronization.
 
@@ -117,7 +117,7 @@ Performance Characteristics
 Since CopyOnWriteArrayList extends AbstractList and implements List, it inherits most of the methods from List, as well as AbstractList. 
 
 ### LinkedList
-#### ⏰ LinkedList allows fast insertions/removals at both ends (O(1)) but has slower access (O(n)), making it better suited for write-heavy scenarios with lots of mid-list changes. LinkedList is slower than ArrayList for access but faster for frequent insertions/removals in the middle or at the ends, making it better for write-heavy use cases.
+##### ⏰ LinkedList allows fast insertions/removals at both ends (O(1)) but has slower access (O(n)), making it better suited for write-heavy scenarios with lots of mid-list changes. LinkedList is slower than ArrayList for access but faster for frequent insertions/removals in the middle or at the ends, making it better for write-heavy use cases.
 
 It's a class that implements the List interface and extends AbstractSequentialList. It is a doubly linked list implementation, meaning each element in the list points to both the next and the previous element. This enables efficient insertions and deletions from both ends of the list but does not support fast random access like an ArrayList.
 
