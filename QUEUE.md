@@ -77,6 +77,15 @@ Outside of what is inheritede from Itereable and Collection Interfaces, Queue in
 
 ### AbstractQueue
 
+AbstractQueue<E> is an abstract class that provides a skeletal implementation of the Queue<E> interface. It serves as a foundation for implementing specific types of queues, offering default implementations for many methods in the Queue interface, but leaving others to be implemented by subclasses. This allows subclasses to focus on the unique parts of queue functionality while relying on the default behavior provided by AbstractQueue for most common queue operations.
+
+Methods Implemented from Queue
++ add(E e): In AbstractQueue, this is implemented by calling the offer(E e) method. The offer method is usually a more efficient way of adding elements to the queue (e.g., it can return a boolean instead of throwing an exception if the operation fails). Default Implementation: return offer(e);
++ offer(E e): This method is typically overridden in concrete implementations to define how elements are added to the queue. If the queue can accept the element, it should return true. If the queue is full, it should return false. Default Implementation: This method is abstract in AbstractQueue, and concrete classes must implement it themselves.
++ remove(): This method removes and returns the head of the queue. If the queue is empty, it throws a NoSuchElementException. Default Implementation: return poll(); (uses poll() which is a safer version that returns null instead of throwing an exception).
++ poll(): This method is implemented in AbstractQueue to retrieve and remove the head of the queue, but it allows returning null if the queue is empty (instead of throwing an exception). Default Implementation: It is abstract in AbstractQueue, so concrete classes must implement it.
++ peek(): This method retrieves, but does not remove, the head of the queue. If the queue is empty, it returns null. Default Implementation: It is abstract in AbstractQueue, so concrete classes must implement it.
++ element(): This method retrieves (but does not remove) the head of the queue, throwing a NoSuchElementException if the queue is empty. Default Implementation: return peek(); (calls peek() method).
  
 ### Deque
 
