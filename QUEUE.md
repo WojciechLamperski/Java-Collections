@@ -19,6 +19,8 @@ Queue<E> // Root Interface
 ├── PriorityQueue<E>   (implements Queue, unbounded, uses heap to order elements)  
 ├── ConcurrentLinkedQueue<E>   (implements Queue, non-blocking, uses linked nodes for thread safety)  
 ```
+-------------------------------
+
 ## Interfaces and Abstract Classes
 
 ### Queue
