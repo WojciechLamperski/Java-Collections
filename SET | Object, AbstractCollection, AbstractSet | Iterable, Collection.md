@@ -82,13 +82,14 @@ Implemented by Collection<E> (which means all collections are iterable).
 Provides the methods:
 
 - iterator(): which returns Iterator<E> (not Iterable but ITERATOR), allowing elements to be accessed sequentially using Iterator methods:
+```java
 // iterator() returns Iterator, just as below:
 Iterator<E> iterator = collection.iterator();
 // Example of accessing elements sequentially using hasNext:
 while (iterator.hasNext()) {
     System.out.println(it.next());
 }
-
+```
 These Iterator methods are as follows:
 public interface Iterator<E> {
     boolean hasNext(); // Checks if there's another element
