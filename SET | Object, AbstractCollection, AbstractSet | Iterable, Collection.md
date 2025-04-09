@@ -2,7 +2,6 @@
 
 ### Object
 All collections are objects because their implementations are classes, and all classes implicitly inherit from Object (which is a class). While collection interfaces (List, Set, etc.) do not inherit Object methods, any concrete implementation we use (ArrayList, HashSet, etc.) does. This ensures that methods like .equals() and .hashCode() are always available in actual collection objects, since they are intherited from Object.
-An Object in JavaScript is a fundamental data structure used to store key-value pairs, with no restrictions, but also with no out-of the box methods that are available in say Map.
 
 #### hashCode(): 
 Returns an integer that represents the object's hash value, which is used for efficient lookup in hash-based collections like HashSet and HashMap. By default, Object.hashCode() in Java returns a unique integer derived from the object's memory address, but classes often override hashCode() to generate a value based on relevant fields (e.g., a string’s characters or a number’s value) to ensure logical equality. This allows different instances with the same data to be treated as duplicates in collections.
