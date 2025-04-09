@@ -183,13 +183,14 @@ If a class does not override equals(), it inherits Object.equals(), which perfor
 However in most cases it does overwrite it, the only ones that don't are Queues (PriorityQueue, Deque, etc.).
 
 For example Sets, Lists, and Maps override the default equals, to do an equals on each of these collections elements, instead of doing it on the lists themeselves. So list1.equals(list2), in simplified terms does something like list1(object1.equals(object2), string1.equals(string2), ...), which, under the hood, is implemented like this: 
+```java
 for (int i = 0; i < list1.size(); i++) {
     if (!list1.get(i).equals(list2.get(i))) {
         return false;
     }
 }
 return true;
-
+```
 Java iterates through each element and calls equals() on them. If the elements don't override equals(), the default reference (==) comparison is used. To achieve a true deep comparison (comparing internal fields), we must override equals() in our objects.
 
 - Methods unique to Set: 
