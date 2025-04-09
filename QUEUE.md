@@ -232,14 +232,14 @@ Use Cases:
 + Stack and Queue Operations: You can use ArrayDeque as both a stack (LIFO) and a queue (FIFO). Since ArrayDeque allows constant-time operations at both ends, it's a good choice for these types of data structures.
 
 ### ArrayBlockingQueue
-##### ⏰ Provides O(1) time for insertion and removal, but uses a single lock for both operations, which can lead to contention under heavy multithreading. It's faster than LinkedBlockingQueue in low-contention, small-capacity scenarios due to its array backing.
+##### ⏰ Provides O(1) time for insertion and removal, but uses a single lock for both operations, which can lead to contention under heavy multithreading. It's faster than LinkedBlockingQueue in low-contention, small-capacity scenarios due to its array backing (so when there are just a couple of threads).
 
 `ArrayBlockingQueue<E>` is a bounded, blocking queue backed by a fixed-size array, meaning its capacity is set at creation and cannot grow. It follows FIFO (first-in-first-out) order and is thread-safe thanks to internal locks used for coordinating access between producers and consumers.
 
 Because it’s array-backed, it offers predictable performance and memory use, with constant-time offer(), poll(), peek(), and size() operations under most conditions. However, unlike LinkedBlockingQueue, it does not allow for dynamic resizing, making it ideal for situations where a known, fixed capacity is desired for resource control.
 
 ### LinkedBlockingQueue
-##### ⏰ Just as ArrayBlockingQueue offers O(1) time complexity but uses separate locks for put and take, making it perform better than ArrayBlockingQueue under high-concurrency conditions. Slightly slower for small or single-threaded workloads due to overhead of node management.
+##### ⏰ Just as ArrayBlockingQueue offers O(1) time complexity but uses separate locks for put and take, making it perform better than ArrayBlockingQueue under high-concurrency conditions. Slightly slower for small or single-threaded workloads due to overhead of node management (so it's better for a lot of threads (like 10s or 100s)).
 
 LinkedBlockingQueue is a thread-safe, optionally bounded implementation of the BlockingQueue interface that uses a linked-node structure internally.
 + It can be bounded (with a specified capacity) or unbounded (defaulting to Integer.MAX_VALUE).
