@@ -91,23 +91,25 @@ while (iterator.hasNext()) {
 }
 ```
 These Iterator methods are as follows:
+```java
 public interface Iterator<E> {
     boolean hasNext(); // Checks if there's another element
     E next();          // Returns the next element
     void remove();     // (Optional) Removes the current element
 }
-
+```
 The speecifics of how these methods are implemented depend on the specific collection,
 which define them using @Override annotation, but their effect is the same regardless of the class.
 
 - forEach(Consumer<? super E> action): Enables lambda-based iteration. Under the hood it does that:
+```java
 Iterator<T> iterator = collection.iterator();
 while (iterator.hasNext()) {
     action.accept(iterator.next());
 }
-
+```
 - spliterator(): Supports parallel processing. This method returns an instance of a Spliterator implementation that is specific to that collection type.
-
+```java
 public interface Spliterator<T> {
     boolean tryAdvance(Consumer<? super T> action); // Process one element at a time
     void forEachRemaining(Consumer<? super T> action); // Process remaining elements
@@ -115,10 +117,9 @@ public interface Spliterator<T> {
     long estimateSize(); // Estimate number of elements
     int characteristics(); // Returns characteristics (ORDERED, DISTINCT, etc.)
 }
-
+```
 Similarly to Iterator each collection provides a custom implementation of Spliterator.
 Splitarator is used for parallel streams, where the workload is divided.
-
 
 ### Collection:
 The Collection interface extends Iterable, meaning it inherits the ability to use forEach(), iterator(), and spliterator(). However, Collection adds additional functionality that makes it more powerful and useful for working with groups of objects.
