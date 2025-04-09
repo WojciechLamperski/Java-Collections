@@ -227,7 +227,7 @@ Sorted Set implements Set.
 SortedSet guarantees elements are sorted based on natural ordering or a comparator.
 Insertion order ≠ Sorted order
 Consider the below comparison of Set implementation (that also has ordering) and SortedSet
-
+```java
 Set<Integer> linkedHashSet = new LinkedHashSet<>();
 linkedHashSet.add(3);
 linkedHashSet.add(1);
@@ -241,7 +241,7 @@ sortedSet.add(1);
 sortedSet.add(2);
 System.out.println(sortedSet); 
 // ✅ Output: [1, 2, 3] (Sorted order)
-
+```
 - No duplicates allowed ❌
 - Sorted order (natural or custom)
 - Sorted (by Comparable or Comparator) ✅
